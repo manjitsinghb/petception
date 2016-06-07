@@ -8,9 +8,14 @@ import com.petception.request.PetInfoRequest;
 import com.petception.response.PetAddResponse;
 import com.petception.response.PetInfoResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -35,7 +40,9 @@ public class PetInfoController {
             response.setStatus(ServerStatus.FAILED.name());
             return response;
         }
-        response.setPet(pet);
+        List<Pet> pets = new ArrayList();
+        pets.add(pet);
+        response.setPet(pets);
         return response;
     }
 
@@ -55,6 +62,19 @@ public class PetInfoController {
         response.setPetId(result);
         response.setStatus(ServerStatus.SUCCESS.name());
         return response;
+    }
+
+
+    @RequestMapping(value = "/getAllPets",produces = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.GET)
+    public @ResponseBody
+    ResponseEntity<?> getAllPets()
+    {
+        List<Pet> pet = petInfoDao.getAllPetInfo();
+        PetInfoResponse response = createResponse();
+        response.setPet(pet);
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.add("Access-Control-Allow-Origin","http://localhost");
+        return new ResponseEntity<PetInfoResponse>(response,httpHeaders, HttpStatus.OK);
     }
 
     private PetInfoResponse createResponse() {

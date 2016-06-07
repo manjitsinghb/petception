@@ -66,12 +66,12 @@
         <p class="lead">Petception is the single stop to adopt a pet and add a new family member.</p>
     </div>
     <div class="col-sm-4" ng-controller="PetInfoController as pets">
-        <div class="list-group">
-            <a class="list-group-item active" href={{pets.pet.url}}>
-                <h4 class="list-group-item-heading">{{pets.pet.name}}</h4>
-                <p class="list-group-item-text">{{pets.pet.breed}}</p>
-                <p class="list-group-item-text">{{pets.pet.weight}}</p>
-                <p class="list-group-item-text">{{pets.pet.color}}</p>
+        <div class="list-group" ng-repeat="info in pets.petInfo.pet">
+            <a class="list-group-item active" href={{info.url}}>
+                <h4 class="list-group-item-heading">{{info.name}}</h4>
+                <p class="list-group-item-text">{{info.breed}}</p>
+                <p class="list-group-item-text">{{info.weight}}</p>
+                <p class="list-group-item-text">{{info.color}}</p>
             </a>
         </div>
     </div>
