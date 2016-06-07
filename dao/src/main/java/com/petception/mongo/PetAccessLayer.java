@@ -29,4 +29,9 @@ public class PetAccessLayer extends BaseRepository{
         petInfoCollection.insertOne(properties);
         return properties;
     }
+
+    public List<Document> getAllPetInfo() {
+        Document properties = new Document();
+        return petInfoCollection.find(properties).into(new ArrayList<Document>());
+    }
 }
