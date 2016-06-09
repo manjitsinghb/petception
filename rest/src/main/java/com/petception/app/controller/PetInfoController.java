@@ -46,22 +46,37 @@ public class PetInfoController {
         return response;
     }
 
+    @RequestMapping(value = "/addPet",method = RequestMethod.OPTIONS)
+    public @ResponseBody ResponseEntity<?> getOptions()
+    {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Access-Control-Allow-Credentials", "true");
+        headers.add("Access-Control-Max-Age", "1000");
+        headers.add("Access-Control-Allow-Origin","*");
+        headers.add("Access-Control-Allow-Headers", "X-Requested-With,Access-Control-Allow-Origin, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding");
+        headers.add("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
+        return new ResponseEntity<Object>(headers,HttpStatus.OK);
+    }
+
+
     @RequestMapping(value = "/addPet",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.POST)
-    public @ResponseBody PetAddResponse addPet(@RequestBody PetAddRequest petAddRequest)
+    public @ResponseBody ResponseEntity<?> addPet(@RequestBody PetAddRequest petAddRequest)
     {
         Pet pet = petAddRequest.getPet();
         pet.setPetId(UUID.randomUUID().toString());
         String result = petInfoDao.addPetInfo(pet);
         PetAddResponse response = createPetAddResponse();
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.add("Access-Control-Allow-Origin","*");
         if(result ==null)
         {
             response.setErrorMessage("Failed to add Pet Information");
             response.setStatus(ServerStatus.FAILED.name());
-            return response;
+            return new ResponseEntity<PetAddResponse>(response,httpHeaders, HttpStatus.OK);
         }
         response.setPetId(result);
         response.setStatus(ServerStatus.SUCCESS.name());
-        return response;
+        return new ResponseEntity<PetAddResponse>(response,httpHeaders, HttpStatus.OK);
     }
 
 
@@ -73,7 +88,7 @@ public class PetInfoController {
         PetInfoResponse response = createResponse();
         response.setPet(pet);
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add("Access-Control-Allow-Origin","http://localhost");
+        httpHeaders.add("Access-Control-Allow-Origin","*");
         return new ResponseEntity<PetInfoResponse>(response,httpHeaders, HttpStatus.OK);
     }
 

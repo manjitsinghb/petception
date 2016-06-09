@@ -1,0 +1,47 @@
+<form name="petForm" ng-init="{petData={}}" ng-submit="petAddInfo.addPet(petData)"  novalidate>
+    <div class="form-group">
+        <label for="nameofPet">Name of your pet</label>
+        <input class="form-control" ng-model="petData.name" id="nameOfPet" type="text">
+    </div>
+
+    <div class="form-group">
+        <label for="ageOfPet">Age of your pet</label>
+        <input class="form-control" ng-model="petData.age" id="ageOfPet" type="text">
+    </div>
+
+    <div class="form-group">
+        <label for="breedOfPet">Breed of your pet</label>
+        <input class="form-control" ng-model="petData.breed" id="breed" type="text">
+    </div>
+
+    <div class="form-group">
+        <label for="typeOfPet">Type of your pet</label>
+        <input class="form-control" ng-model="petData.type" id="type" type="text">
+    </div>
+
+    <div class="form-group">
+        <label for="weight">Weight of your pet</label>
+        <input class="form-control" ng-model="petData.weight" id="weight" type="text">
+    </div>
+
+    <div class="form-group">
+        <label for="vaccination">Vacinnation history of your pet</label>
+        <input class="form-control" ng-model="petData.vaccine" id="vaccine" type="text">
+    </div>
+
+    <div class="form-group">
+        <label for="comments">Comment</label>
+        <textarea class="form-control" ng-model="petData.comments" id="comments" > </textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="photo">Upload Pic</label>
+        <input type="file" class="form-control" ng-model="petData.filePath" name="fileToUpload" id="fileToUpload">
+    </div>
+
+    <h2>
+    <input value="submit" type="submit">Add your pet</input>
+        </h2>
+
+    {{petData}}
+</form>
