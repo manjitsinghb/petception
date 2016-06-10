@@ -1,4 +1,4 @@
-<form name="petForm" ng-init="{petData={}}" ng-submit="petAddInfo.addPet(petData)"  novalidate>
+<form name="petForm" ng-init="petData={}" ng-submit="petAddInfo.addPet(petData)"  novalidate>
     <div class="form-group">
         <label for="nameofPet">Name of your pet</label>
         <input class="form-control" ng-model="petData.name" id="nameOfPet" type="text">
@@ -36,7 +36,7 @@
 
     <div class="form-group">
         <label for="photo">Upload Pic</label>
-        <input type="file" class="form-control" ng-model="petData.filePath" name="fileToUpload" id="fileToUpload">
+        <input type="file" ng-model="petData.filePath" name="fileToUpload" id="fileToUpload">
     </div>
 
     <h2>
