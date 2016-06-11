@@ -1,4 +1,4 @@
-<form name="petForm" ng-init="petData={}" ng-submit="petAddInfo.addPet(petData)"  novalidate>
+<form name="petForm" ng-init="petData={}" novalidate>
     <div class="form-group">
         <label for="nameofPet">Name of your pet</label>
         <input class="form-control" ng-model="petData.name" id="nameOfPet" type="text">
@@ -40,8 +40,6 @@
     </div>
 
     <h2>
-    <input value="submit" type="submit">Add your pet</input>
+    <button class="label label-success" type="submit" ng-click="petAddInfo.addPet(petData)" >Add your pet</button>
         </h2>
-
-    {{petData}}
 </form>
