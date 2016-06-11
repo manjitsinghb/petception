@@ -1,4 +1,12 @@
 <form name="petForm" ng-init="petData={}" novalidate>
+    <div role="alert" ng-show="petAddInfo.success === 1" class="alert alert-success">
+        <strong>Well done!</strong> You successfully added your pet
+    </div>
+
+    <div role="alert" ng-show="petAddInfo.error === 1" class="alert alert-danger">
+        <strong ng-repeat='error in petAddInfo.errorMessage'>{{error}}<br></strong>
+    </div>
+
     <div class="form-group">
         <label for="nameofPet">Name of your pet</label>
         <input class="form-control" ng-model="petData.name" id="nameOfPet" type="text">
@@ -21,12 +29,17 @@
 
     <div class="form-group">
         <label for="weight">Weight of your pet</label>
-        <input class="form-control" ng-model="petData.weight" id="weight" type="text">
+        <input class="form-control" ng-model="petData.weigthInLbs" id="weight" type="text">
     </div>
 
     <div class="form-group">
         <label for="vaccination">Vacinnation history of your pet</label>
         <input class="form-control" ng-model="petData.vaccine" id="vaccine" type="text">
+    </div>
+
+    <div class="form-group">
+        <label for="color">Color of your pet</label>
+        <input class="form-control" ng-model="petData.color" id="color" type="text">
     </div>
 
     <div class="form-group">
