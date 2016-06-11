@@ -31,12 +31,13 @@
         <div class="col-md-4" ng-repeat="info in obj">
             <div><img src="images/cat.jpg" style="width:150px; height:150px; float:right;"/></div>
             <h2>{{info.name}}</h2>
-            <p>{{info.breed}}</p>
-            <p>{{info.color}}</p>
-            <p>{{info.weigthInLbs}}</p>
-            <p>{{info.age}}</p>
-            <p><a class="btn btn-default" href="#" role="button">Tell me more</a></p>
+            <p>Breed: {{info.breed}}</p>
+            <p>Color: {{info.color}}</p>
+            <p>Weight: {{info.weigthInLbs}}</p>
+            <p>Age: {{info.age}}</p>
+            <p><a class="btn btn-default" href="#" ng-click="getPetInfo.getPetDetails(info.petId)"  data-toggle="modal" data-target="#myModal" role="button">Tell me more</a></p>
         </div>
+        <pet-info></pet-info>
 
     </div>
     </div>
