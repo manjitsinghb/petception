@@ -9,8 +9,9 @@ return{
     this.getPetDetails=function(petId)
     {
     petRequest={'petId':petId};
-    $http.post('http://localhost:8080/getPet',petRequest,{headers:{'Content-Type':'application/json'}}).
-    then(function(response){
+    $http.post('http://97.99.64.156:8080/getPet',petRequest,{headers:{'Content-Type':'application/json'}}).
+    then(function(response)
+    {
     this.petInfo=response.data.pet[0];
     }.bind(this),function(response){}.bind(this));
     }}],controllerAs:'getPetInfo'
@@ -30,7 +31,7 @@ return{
         this.error=0;
         this.errorMessage={};
         petInfo={'pet':mypet};
-        $http.post('http://localhost:8080/addPet',petInfo,{headers:{'Content-Type':'application/json'}})
+        $http.post('http://97.99.64.156:8080/addPet',petInfo,{headers:{'Content-Type':'application/json'}})
         .then(function(response){
             result= response.data;
             if(result.status=='SUCCESS')
