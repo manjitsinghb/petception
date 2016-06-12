@@ -29,13 +29,13 @@
         <module name="web" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="configuration" target="1.6" />
-      <module name="dao" target="1.6" />
-      <module name="domain" target="1.6" />
-      <module name="petception" target="1.6" />
-      <module name="rest" target="1.6" />
-      <module name="web" target="1.6" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="configuration" target="1.8" />
+      <module name="dao" target="1.8" />
+      <module name="domain" target="1.8" />
+      <module name="petception" target="1.8" />
+      <module name="rest" target="1.8" />
+      <module name="web" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
