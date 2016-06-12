@@ -7,11 +7,10 @@ import com.petception.request.PetAddRequest;
 import com.petception.request.PetInfoRequest;
 import com.petception.response.PetAddResponse;
 import com.petception.response.PetInfoResponse;
+import com.petception.validator.AddPetValidator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -22,11 +21,14 @@ import java.util.UUID;
  * Created by manjtsingh on 6/5/2016.
  */
 @RestController
+@CrossOrigin(origins = "*")
 public class PetInfoController {
 
     @Autowired
     PetInfoDao petInfoDao;
 
+    @Autowired
+    AddPetValidator addPetValidator;
 
     @RequestMapping(value = "/getPet",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.POST)
     public @ResponseBody PetInfoResponse getPetInfo(@RequestBody PetInfoRequest petInfoRequest)
@@ -50,6 +52,14 @@ public class PetInfoController {
     public @ResponseBody PetAddResponse addPet(@RequestBody PetAddRequest petAddRequest)
     {
         Pet pet = petAddRequest.getPet();
+        List<String> errors = addPetValidator.validate(pet);
+        if(!errors.isEmpty())
+        {
+            PetAddResponse petAddResponse = new PetAddResponse();
+            petAddResponse.setErrorMessage(StringUtils.collectionToDelimitedString(errors,","));
+            petAddResponse.setStatus(ServerStatus.FAILED.name());
+            return petAddResponse;
+        }
         pet.setPetId(UUID.randomUUID().toString());
         String result = petInfoDao.addPetInfo(pet);
         PetAddResponse response = createPetAddResponse();
@@ -66,15 +76,12 @@ public class PetInfoController {
 
 
     @RequestMapping(value = "/getAllPets",produces = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.GET)
-    public @ResponseBody
-    ResponseEntity<?> getAllPets()
+    public @ResponseBody PetInfoResponse getAllPets()
     {
         List<Pet> pet = petInfoDao.getAllPetInfo();
         PetInfoResponse response = createResponse();
         response.setPet(pet);
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add("Access-Control-Allow-Origin","http://localhost");
-        return new ResponseEntity<PetInfoResponse>(response,httpHeaders, HttpStatus.OK);
+        return response;
     }
 
     private PetInfoResponse createResponse() {
