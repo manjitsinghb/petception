@@ -13,7 +13,6 @@ import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -34,7 +33,7 @@ public class PetInfoController {
     public @ResponseBody PetInfoResponse getPetInfo(@RequestBody PetInfoRequest petInfoRequest)
     {
         String identifier = petInfoRequest.getPetId();
-        Pet pet = petInfoDao.getPetInfo(identifier);
+        List<Pet> pet = petInfoDao.getPetInfo(identifier);
         PetInfoResponse response = createResponse();
         if(pet ==null)
         {
@@ -42,9 +41,7 @@ public class PetInfoController {
             response.setStatus(ServerStatus.FAILED.name());
             return response;
         }
-        List<Pet> pets = new ArrayList();
-        pets.add(pet);
-        response.setPet(pets);
+        response.setPet(pet);
         return response;
     }
 
