@@ -17,6 +17,16 @@ public class Pet {
     private String url;
     private String comment;
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    private String email;
+
     public String getComment() {
         return comment;
     }
