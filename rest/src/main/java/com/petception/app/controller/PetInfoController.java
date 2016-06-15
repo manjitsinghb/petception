@@ -9,11 +9,13 @@ import com.petception.response.PetAddResponse;
 import com.petception.response.PetInfoResponse;
 import com.petception.validator.AddPetValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -28,6 +30,11 @@ public class PetInfoController {
 
     @Autowired
     AddPetValidator addPetValidator;
+
+    @Value("${breed.dog}")
+    private String dogBreed;
+
+    private String catBreed;
 
     @RequestMapping(value = "/getPet",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.POST)
     public @ResponseBody PetInfoResponse getPetInfo(@RequestBody PetInfoRequest petInfoRequest)
@@ -44,6 +51,21 @@ public class PetInfoController {
         response.setPet(pet);
         return response;
     }
+
+    @RequestMapping(value = "/getBreed",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.POST)
+    public @ResponseBody String getBreed(@RequestBody Map<String, String> breeds)
+    {
+        String breed = breeds.get("breed");
+        if("dog".equalsIgnoreCase(breed)) {
+            return dogBreed;
+        }
+        else if("cat".equalsIgnoreCase(breed))
+        {
+            return catBreed;
+        }
+        return null;
+    }
+
 
     @RequestMapping(value = "/addPet",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.POST)
     public @ResponseBody PetAddResponse addPet(@RequestBody PetAddRequest petAddRequest)
