@@ -49,3 +49,6 @@ return{
 }
 });
 })();
+
+
+//upload file using ajax

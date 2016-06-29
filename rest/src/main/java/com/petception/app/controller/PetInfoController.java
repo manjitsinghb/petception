@@ -96,7 +96,7 @@ public class PetInfoController {
     }
 
 
-    @RequestMapping(value="/uploadPic",produces = MediaType.TEXT_PLAIN_VALUE,method = RequestMethod.POST)
+    @RequestMapping(value="/uploadPic",consumes = MediaType.MULTIPART_FORM_DATA_VALUE,produces = MediaType.TEXT_PLAIN_VALUE,method = RequestMethod.POST)
     public @ResponseBody String uploadPic(@RequestParam("file") MultipartFile file)
     {
         try {
