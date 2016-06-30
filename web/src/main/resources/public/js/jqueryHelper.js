@@ -11,7 +11,47 @@ cache: false,             // To unable request pages to be cached
 processData:false,        // To send DOMDocument or non processed data file it is set to false
 success: function(data)   // A function to be called if request succeeds
 {
-alert("success");
+    $("#url").attr('value',data);
 }
 });
-}));});
+}));
+$("#addPet").click((function(e) {
+var petData = {};
+petData["name"]=$("#nameOfPet").val()
+petData["breed"]=$("#breed").val()
+petData["weigthInLbs"]=$("#weight").val()
+petData["age"]=$("#ageOfPet").val()
+petData["color"]=$("#color").val()
+petData["url"]=$("#url").val()
+petData["email"]=$("#email").val();
+petData["type"]=$("#type").val();
+petData["vaccine"]=$("#vaccine").val();
+var pet ={};
+pet["pet"]=petData;
+$.ajax({
+url: "http://localhost:8080/addPet", // Url to which the request is send
+type: "POST",             // Type of request to be send, called as method
+data: JSON.stringify(pet), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+contentType: "application/json",       // The content type used when sending data to the server.
+cache: false,             // To unable request pages to be cached
+    dataType: 'json',
+processData:false,        // To send DOMDocument or non processed data file it is set to false
+success: function(data)   // A function to be called if request succeeds
+{
+    if(data.status=="FAILED")
+    {
+    $("#error-msg").text(data.errorMessage);
+    $("#error-msg").css('display','block');
+    $("#success-msg").css('display','none');
+    }
+    else
+    {
+    $("#error-msg").css('display','none');
+    $("#success-msg").css('display','block');
+    }
+}
+});
+
+
+
+}))});

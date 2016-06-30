@@ -29,7 +29,7 @@
     <div ng-repeat="obj in petInfo">
         <div class="row">
         <div class="col-md-4" ng-repeat="info in obj">
-            <div><img src="images/cat.jpg" style="width:150px; height:150px; float:right;"/></div>
+            <div><img src={{info.url}} style="width:150px; height:150px; float:right;"/></div>
             <h2>{{info.name}}</h2>
             <p>Breed: {{info.breed}}</p>
             <p>Color: {{info.color}}</p>

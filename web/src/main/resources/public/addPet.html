@@ -22,12 +22,72 @@
         <p>Add your pet here. Please give us more information about your pet. </p>
     </div>
     <!-- Example row of columns -->
-<pet-add></pet-add>
+    <form name="petForm" novalidate>
+        <div id="success-msg" role="alert" class="alert alert-success" style="display:none;">
+            <strong>Well done!</strong> You successfully added your pet.
+        </div>
 
-    <div class="form-group">
-        <label for="petsnap">Upload Pic</label>
-        <input type="file"   id="fileToUpload" name="fileToUpload" />
-    </div>
+        <div id="error-msg" role="alert"  class="alert alert-danger" style="display:none;">
+            <strong><br></strong>
+        </div>
+
+        <div class="form-group">
+            <label for="nameofPet">Your Email</label>
+            <input class="form-control" id="email" type="text">
+        </div>
+
+
+        <div class="form-group">
+            <label for="nameofPet">Name of your pet</label>
+            <input class="form-control"  id="nameOfPet" type="text">
+        </div>
+
+        <div class="form-group">
+            <label for="ageOfPet">Age of your pet in months</label>
+            <input class="form-control" id="ageOfPet" type="text">
+        </div>
+
+        <div class="form-group">
+            <label for="breedOfPet">Breed of your pet</label>
+            <input class="form-control" id="breed" type="text">
+        </div>
+
+        <div class="form-group">
+            <label for="typeOfPet">Type of your pet</label>
+            <input class="form-control"  id="type" type="text">
+        </div>
+
+        <div class="form-group">
+            <label for="weight">Weight of your pet in pounds</label>
+            <input class="form-control"  id="weight" type="text">
+        </div>
+
+        <div class="form-group">
+            <label for="vaccination">Vacinnation history of your pet</label>
+            <input class="form-control"  id="vaccine" type="text">
+        </div>
+
+        <div class="form-group">
+            <label for="color">Color of your pet</label>
+            <input class="form-control"  id="color" type="text">
+        </div>
+
+        <div class="form-group">
+            <label for="comments">Comment</label>
+            <textarea class="form-control"  id="comments" > </textarea>
+        </div>
+        <div class="form-group">
+            <label for="petsnap">Upload Pic</label>
+            <input type="file"  accept=".xls,.xlsx" id="fileToUpload" name="fileToUpload" />
+        </div>
+
+        <input type="hidden" id="url"  name="url" >
+        <h2>
+            <button class="label label-success" name="addPet" id="addPet" type="submit" >Add your pet</button>
+        </h2>
+
+
+
     </form>
     <footer ng-include="'footer.html'">
     </footer>

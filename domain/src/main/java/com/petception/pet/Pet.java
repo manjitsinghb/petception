@@ -16,6 +16,25 @@ public class Pet {
     private String color;
     private String url;
     private String comment;
+    private String type;
+
+    public String getVaccine() {
+        return vaccine;
+    }
+
+    public void setVaccine(String vaccine) {
+        this.vaccine = vaccine;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    private String vaccine;
 
     public String getEmail() {
         return email;

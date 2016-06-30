@@ -108,6 +108,16 @@ public class PetInfoController {
 
     }
 
+    @RequestMapping(value="/getPetPhoto",produces = MediaType.TEXT_PLAIN_VALUE,method = RequestMethod.POST)
+    public @ResponseBody String getPetPic(@RequestBody String petId)
+    {
+        try {
+            return petInfoDao.getPic(petId);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ServerStatus.FAILED.name();
+        }
+    }
 
     @RequestMapping(value = "/getAllPets",produces = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.GET)
     public @ResponseBody PetInfoResponse getAllPets()

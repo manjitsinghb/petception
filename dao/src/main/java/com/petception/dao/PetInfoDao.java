@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,7 +25,7 @@ public class PetInfoDao {
     public List<Pet> getAllPetInfo()
     {
         List<Document> pets = petAccessLayer.getAllPetInfo();
-        return pets.stream().map(this::mapDocumentToPetInfo).flatMap(l->l.stream()).collect(Collectors.toList());
+        return pets.stream().map(this::mapDocumentToPetInfo).flatMap(Collection::stream).collect(Collectors.toList());
     }
 
     public List<Pet> getPetInfo(String petIdentifier)
@@ -49,6 +50,8 @@ public class PetInfoDao {
             pet.setPetId(response.getString("petId"));
             pet.setWeigthInLbs(response.getInteger("weight"));
             pet.setName(response.getString("name"));
+            pet.setUrl(response.getString("url"));
+            pet.setVaccine(response.getString("vaccine"));
             pets.add(pet);
         }
         return pets;
@@ -60,5 +63,9 @@ public class PetInfoDao {
 
     public String uploadPic(MultipartFile file) throws IOException {
         return petAccessLayer.uploadPic(file);
+    }
+
+    public String getPic(String petId) throws IOException {
+        return petAccessLayer.getPic(petId);
     }
 }

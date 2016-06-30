@@ -2,6 +2,7 @@ package com.petception.mongo;
 
 import com.mongodb.MongoClient;
 import com.mongodb.gridfs.GridFS;
+import com.mongodb.gridfs.GridFSDBFile;
 import com.mongodb.gridfs.GridFSInputFile;
 import com.petception.pet.Pet;
 import org.bson.Document;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +37,7 @@ public class PetAccessLayer extends BaseRepository{
 
     public Document addPetInfo(Pet pet) {
         Document insertDoc = new Document("name",pet.getName()).append("age",pet.getAge()).append("breed",pet.getBreed())
-                .append("color",pet.getColor()).append("weight",pet.getWeigthInLbs()).append("petId",pet.getPetId());
+                .append("color",pet.getColor()).append("weight",pet.getWeigthInLbs()).append("petId",pet.getPetId()).append("url",pet.getUrl());
 
         Document findDoc = new Document("_id",pet.getEmail());
         List<Document> findResult = petInfoCollection.find(findDoc).into(new ArrayList<>());
@@ -66,4 +68,17 @@ public class PetAccessLayer extends BaseRepository{
         storedFile.save();
         return fileName;
     }
+
+    public String getPic(String petId) throws IOException {
+            GridFS gfsPhoto = new GridFS(mongoClient.getDB("petception"), "photoStore");
+            GridFSDBFile imageForOutput = gfsPhoto.findOne(petId);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        try {
+            imageForOutput.writeTo(byteArrayOutputStream);
+            return byteArrayOutputStream.toString();
+        }finally {
+                byteArrayOutputStream.close();
+        }
+    }
+
 }
