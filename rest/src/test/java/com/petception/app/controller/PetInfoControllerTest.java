@@ -54,7 +54,7 @@ public class PetInfoControllerTest {
         pet.setBreed("breed");
         pet.setColor("color");
         pet.setUserId("userId");
-        pet.setWeigthInLbs(1);
+        pet.setWeight(1);
         pet.setComment("comment");
         return pet;
     }

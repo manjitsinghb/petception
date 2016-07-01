@@ -11,11 +11,11 @@ public class Pet {
     private String petId;
     private String name;
     private String breed;
-    private Integer weigthInLbs;
+    private Integer weight;
     private Integer age;
     private String color;
     private String url;
-    private String comment;
+    private String comment ="N/A";
     private String type;
 
     public String getVaccine() {
@@ -96,12 +96,12 @@ public class Pet {
         this.breed = breed;
     }
 
-    public Integer getWeigthInLbs() {
-        return weigthInLbs;
+    public Integer getWeight() {
+        return weight;
     }
 
-    public void setWeigthInLbs(Integer weigthInLbs) {
-        this.weigthInLbs = weigthInLbs;
+    public void setWeight(Integer weight) {
+        this.weight = weight;
     }
 
     public Integer getAge() {

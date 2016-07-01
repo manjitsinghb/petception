@@ -48,7 +48,7 @@ public class PetInfoDao {
             pet.setBreed(response.getString("breed"));
             pet.setColor(response.getString("color"));
             pet.setPetId(response.getString("petId"));
-            pet.setWeigthInLbs(response.getInteger("weight"));
+            pet.setWeight(response.getInteger("weight"));
             pet.setName(response.getString("name"));
             pet.setUrl(response.getString("url"));
             pet.setVaccine(response.getString("vaccine"));

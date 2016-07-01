@@ -54,8 +54,8 @@ public class AddPetValidator {
     }
 
     private void validateWeight(Pet pet,List<String> error) {
-        LOGGER.info("Validating pet weight {} for user {}",pet.getWeigthInLbs(),pet.getUserId());
-        if(pet.getWeigthInLbs()==null || pet.getWeigthInLbs()<=0)
+        LOGGER.info("Validating pet weight {} for user {}",pet.getWeight(),pet.getUserId());
+        if(pet.getWeight()==null || pet.getWeight()<=0)
         {
             error.add("Please enter a valid weight");
         }
