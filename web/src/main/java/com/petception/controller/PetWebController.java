@@ -33,4 +33,10 @@ public class PetWebController {
     {
         return "addPet";
     }
+
+    @RequestMapping(value = "/about")
+    public String about(Model model)
+    {
+        return "about";
+    }
 }
