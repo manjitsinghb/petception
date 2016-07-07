@@ -27,4 +27,10 @@ public class PetWebController {
         model.addAttribute("pets",petInfoDao.getAllPetInfo());
         return "index";
     }
+
+    @RequestMapping(value = "/addPet")
+    public String addPet(Model model)
+    {
+        return "addPet";
+    }
 }

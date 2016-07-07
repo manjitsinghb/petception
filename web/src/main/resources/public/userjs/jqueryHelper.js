@@ -19,7 +19,7 @@ $("#addPet").click((function(e) {
 var petData = {};
 petData["name"]=$("#nameOfPet").val()
 petData["breed"]=$("#breed").val()
-petData["weigthInLbs"]=$("#weight").val()
+petData["weight"]=$("#weight").val()
 petData["age"]=$("#ageOfPet").val()
 petData["color"]=$("#color").val()
 petData["url"]=$("#url").val()

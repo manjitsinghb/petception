@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -50,67 +50,64 @@
         </div><!--/.navbar-collapse -->
     </div>
 </nav>
-
-<div class="container">
-<div class="jumbotron">
-        <h1 th:text="${header}" ></h1>
-        <p th:text="${headerText}"></p>
-        <p><a class="btn btn-primary btn-lg" href="about.html" role="button">Learn more &raquo;</a></p>
-</div>
-</div>
-<div class="container">
+<hr />
+<div class="container theme-showcase" role="main">
     <!-- Example row of columns -->
-    <div class="row">
-        <div th:each="pet : ${pets}" class="col-md-4">
-            <h2 th:text="${pet.name}"></h2>
-            <p th:text="${pet.breed}"></p>
-            <p th:text="${pet.age}"></p>
-            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">More Pet Details</button>
-            <div id="myModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h3 class="modal-title" th:text="${pet.name}"> </h3>
-                        </div>
-                        <div class="modal-body">
-                            <ul class="list-group">
-                                <li class="list-group-item" th:inline="text">Name: [[${pet.name}]]</li>
-                                <li class="list-group-item" th:inline="text">Age: [[${pet.age}]]</li>
-                                <li class="list-group-item" th:inline="text">Pet: [[${pet.type}]]</li>
-                                <li class="list-group-item" th:inline="text">Breed:[[${pet.breed}]] </li>
-                                <li class="list-group-item" th:inline="text">Color: [[${pet.color}]]</li>
-                                <li class="list-group-item" th:inline="text">Weight: [[${pet.weight}]] </li>
-                                <li class="list-group-item" th:inline="text">Comment: [[${pet.comment}]]</li>
-                            </ul>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+    <p>
+    <div class="page-header">
+        <form action="/addYourPet" method="POST">
+        <div class="form-group">
+            <label for="petname">Pet Name</label>
+            <input type="text" class="form-control" id="nameOfPet" />
         </div>
+        <div class="form-group">
+            <label for="breed">Breed</label>
+            <input type="text" class="form-control" id="breed" />
+        </div>
+            <div class="form-group">
+                <label for="weight">Weight</label>
+                <input type="number" class="form-control" id="weight" />
+            </div>
+            <div class="form-group">
+                <label for="age">Age of your pet:</label>
+                <input type="number" class="form-control" id="ageOfPet" />
+            </div>
+            <div class="form-group">
+                <label for="color">Color:</label>
+                <input type="text" class="form-control" id="color" />
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="text" class="form-control" id="email" />
+            </div>
+            <div class="form-group">
+                <label for="type">Type of pet:</label>
+                <input type="text" class="form-control" id="type" />
+            </div>
+            <div class="form-group">
+                <label for="vaccine">Vaccine:</label>
+                <input type="text" class="form-control" id="vaccine" />
+            </div>
+            <div class="form-group">
+                <label for="vaccine">Upload Pic</label>
+                <input type="file" id="fileToUpload" />
+            </div>
+            <button class="btn btn-lg btn-success" id="addPet" type="button">Add your pet</button>
+        </form>
     </div>
+    </p>
 
-    <hr></hr>
+    <hr/>
 
     <footer>
         <p>&copy; 2016 Petception, Inc.</p>
     </footer>
 </div>
 
-
-
-
-
-
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>
+<script src="userjs/jqueryHelper.js"></script>
 </body>
 </html>
