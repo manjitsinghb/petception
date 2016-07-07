@@ -66,8 +66,10 @@
             <h2 th:text="${pet.name}"></h2>
             <p th:text="${pet.breed}"></p>
             <p th:text="${pet.age}"></p>
-            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">More Pet Details</button>
-            <div id="myModal" class="modal fade" role="dialog">
+            <button type="button" class="btn btn-default" data-toggle="modal"
+                    th:attr="data-target='#'+${pet.petId}"
+            >More Pet Details</button>
+            <div th:id="${pet.petId}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
 
                     <!-- Modal content-->
