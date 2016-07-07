@@ -56,41 +56,53 @@
     <p>
     <div class="page-header">
         <form action="/addYourPet" method="POST">
+            <div class="row">
+                <div class="col-md-3" >
         <div class="form-group">
             <label for="petname">Pet Name</label>
-            <input type="text" class="form-control" id="nameOfPet" />
+            <input type="text" class="form-control" id="nameOfPet"  />
         </div>
         <div class="form-group">
             <label for="breed">Breed</label>
-            <input type="text" class="form-control" id="breed" />
+            <input type="text" class="form-control" id="breed"   />
         </div>
             <div class="form-group">
                 <label for="weight">Weight</label>
-                <input type="number" class="form-control" id="weight" />
+                <input type="number" class="form-control" id="weight"  />
             </div>
+                    </div>
+                <div class="col-md-3" >
             <div class="form-group">
                 <label for="age">Age of your pet:</label>
-                <input type="number" class="form-control" id="ageOfPet" />
+                <input type="number" class="form-control" id="ageOfPet"   />
             </div>
             <div class="form-group">
                 <label for="color">Color:</label>
-                <input type="text" class="form-control" id="color" />
+                <input type="text" class="form-control" id="color"   />
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="text" class="form-control" id="email" />
+                <input type="text" class="form-control" id="email"   />
             </div>
+                    </div>
+                <div class="col-md-3" >
             <div class="form-group">
                 <label for="type">Type of pet:</label>
-                <input type="text" class="form-control" id="typeOfPet" />
+                <input type="text" class="form-control" id="typeOfPet"   />
             </div>
             <div class="form-group">
                 <label for="vaccine">Vaccine:</label>
-                <input type="text" class="form-control" id="vaccine" />
+                <input type="text" class="form-control" id="vaccine"   />
+            </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="tellmore">Tell Us More:</label>
+                <input type="textarea" class="form-control" rows="4" cols="50" id="comment"   />
             </div>
             <div class="form-group">
                 <label for="vaccine">Upload Pic</label>
-                <input accept="image/jpeg" type="file" id="fileToUpload" />
+                <input accept="image/jpeg" type="file" id="fileToUpload"   />
             </div>
             <button class="btn btn-lg btn-success" id="addPet" type="button">Add your pet</button>
         </form>
