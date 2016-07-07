@@ -53,6 +53,7 @@ public class PetInfoDao {
             pet.setUrl(response.getString("url"));
             pet.setVaccine(response.getString("vaccine"));
             pet.setType(response.getString("type"));
+            pet.setComment(response.getString("comment"));
             pets.add(pet);
         }
         return pets;

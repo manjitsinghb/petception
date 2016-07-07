@@ -26,6 +26,7 @@ petData["url"]=$("#url").val()
 petData["email"]=$("#email").val();
 petData["type"]=$("#typeOfPet").val();
 petData["vaccine"]=$("#vaccine").val();
+petData["comment"]=$("#comment").val();
 var pet ={};
 pet["pet"]=petData;
 $.ajax({
