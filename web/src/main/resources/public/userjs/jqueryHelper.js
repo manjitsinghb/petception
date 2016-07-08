@@ -61,7 +61,39 @@ success: function(data)   // A function to be called if request succeeds
     }
 }
 });
+}));
 
+selectBreed=function(breed)
+{
+var breedData = {};
+breedData["breed"]=breed;
+$.ajax({
+url: "http://localhost:8080/getBreed", // Url to which the request is send
+type: "POST",             // Type of request to be send, called as method
+data: JSON.stringify(breedData), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+contentType: "application/json",       // The content type used when sending data to the server.
+cache: false,             // To unable request pages to be cached
+dataType: 'json',
+processData:false,        // To send DOMDocument or non processed data file it is set to false
+success: function(response)   // A function to be called if request succeeds
+{
+$("#breed").empty();
+    var splits = response.breed.split(",");
+    $.each(splits, function(key) {
+         $('#breed')
+             .append($("<option></option>")
+                        .attr("value",splits[key])
+                        .text(splits[key]));
+    });
+}
+});
+};
 
+selectBreed($("#typeOfPet option:selected").text());
 
-}))});
+$("#typeOfPet").change(function(){
+$("#breed").empty();
+selectBreed($("#typeOfPet option:selected").text());
+});
+
+});

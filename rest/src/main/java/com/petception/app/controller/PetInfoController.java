@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -36,6 +37,7 @@ public class PetInfoController {
     @Value("${breed.dog}")
     private String dogBreed;
 
+    @Value("${breed.cat}")
     private String catBreed;
 
     @RequestMapping(value = "/getPet",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.POST)
@@ -55,17 +57,18 @@ public class PetInfoController {
     }
 
     @RequestMapping(value = "/getBreed",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.POST)
-    public @ResponseBody String getBreed(@RequestBody Map<String, String> breeds)
+    public @ResponseBody Map<String,String> getBreed(@RequestBody Map<String, String> breeds)
     {
+        Map<String,String> map = new HashMap<>();
         String breed = breeds.get("breed");
-        if("dog".equalsIgnoreCase(breed)) {
-            return dogBreed;
+        if("Dog".equalsIgnoreCase(breed)) {
+            map.put("breed",dogBreed);
         }
-        else if("cat".equalsIgnoreCase(breed))
+        else if("Cat".equalsIgnoreCase(breed))
         {
-            return catBreed;
+            map.put("breed",catBreed);
         }
-        return null;
+        return map;
     }
 
 
