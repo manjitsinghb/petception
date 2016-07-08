@@ -5,6 +5,7 @@ import com.mongodb.gridfs.GridFS;
 import com.mongodb.gridfs.GridFSDBFile;
 import com.mongodb.gridfs.GridFSInputFile;
 import com.petception.pet.Pet;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -61,6 +62,7 @@ public class PetAccessLayer extends BaseRepository{
     public String uploadPic(MultipartFile file) throws IOException {
         byte[] fileBytes = file.getBytes();
         String fileName = UUID.randomUUID().toString();
+        fileBytes = Base64.encodeBase64(fileBytes);
         GridFS gridFS = new GridFS(mongoClient.getDB("petception"),"photoStore");
         GridFSInputFile storedFile = gridFS.createFile(fileBytes);
         storedFile.setFilename(fileName);
@@ -74,7 +76,9 @@ public class PetAccessLayer extends BaseRepository{
             GridFSDBFile imageForOutput = gfsPhoto.findOne(petId);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         try {
-            imageForOutput.writeTo(byteArrayOutputStream);
+            if(imageForOutput != null) {
+                imageForOutput.writeTo(byteArrayOutputStream);
+            }
             return byteArrayOutputStream.toString();
         }finally {
                 byteArrayOutputStream.close();

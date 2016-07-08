@@ -1,5 +1,6 @@
 $(document).ready(function (e) {
 $("#fileToUpload").change((function(e) {
+$("#addPet").attr("disabled", "disabled");
 var formData = new FormData();
 formData.append('file', $('input[type=file]')[0].files[0]);
 $.ajax({
@@ -12,6 +13,14 @@ processData:false,        // To send DOMDocument or non processed data file it i
 success: function(data)   // A function to be called if request succeeds
 {
     $("#url").attr('value',data);
+    $("#fileUploadSuccess").css({ 'display': "block" });
+    $("#fileUploadError").css({ 'display': "none" });;
+    $("#addPet").removeAttr("disabled");
+},error: function(data)
+{
+    $("#fileUploadSuccess").css({ 'display': "none" });
+    $("#fileUploadError").css({ 'display': "block" });;
+    $("#addPet").removeAttr("disabled");
 }
 });
 }));
