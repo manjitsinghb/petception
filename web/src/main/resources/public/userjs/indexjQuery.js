@@ -1,6 +1,6 @@
-$(document).ready(function(e) {
+$(function() {$(document).ready(function(e) {
 $('#petDetails img').each(function(){
-                      var imgData='data:image/svg+xml;base64,';
+                      var imgData='data:image/jpg+xml;base64,';
                       var idToSearch=this.id;
                       $.ajax({
                       url: "http://localhost:8080/getPetPhoto", // Url to which the request is send
@@ -18,3 +18,4 @@ $('#petDetails img').each(function(){
                       });
 }
 );
+});

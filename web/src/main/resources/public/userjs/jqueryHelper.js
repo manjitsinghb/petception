@@ -1,4 +1,4 @@
-$(document).ready(function (e) {
+$(function() {$(document).ready(function (e) {
 $("#fileToUpload").change((function(e) {
 $("#addPet").attr("disabled", "disabled");
 var formData = new FormData();
@@ -79,11 +79,11 @@ success: function(response)   // A function to be called if request succeeds
 {
 $("#breed").empty();
     var splits = response.breed.split(",");
-    $.each(splits, function(key) {
+    $.each(splits, function(id) {
          $('#breed')
              .append($("<option></option>")
-                        .attr("value",splits[key])
-                        .text(splits[key]));
+                        .attr("value",splits[id])
+                        .text(splits[id]));
     });
 }
 });
@@ -96,4 +96,5 @@ $("#breed").empty();
 selectBreed($("#typeOfPet option:selected").text());
 });
 
+});
 });

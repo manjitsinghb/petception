@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -60,15 +63,31 @@ public class PetAccessLayer extends BaseRepository{
     }
 
     public String uploadPic(MultipartFile file) throws IOException {
-        byte[] fileBytes = file.getBytes();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
         String fileName = UUID.randomUUID().toString();
-        fileBytes = Base64.encodeBase64(fileBytes);
+        BufferedImage bImage = reduceImageSize(file);
+        ImageIO.write(bImage,file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".")+1),out);
+        byte[] fileBytes = Base64.encodeBase64(out.toByteArray());
         GridFS gridFS = new GridFS(mongoClient.getDB("petception"),"photoStore");
         GridFSInputFile storedFile = gridFS.createFile(fileBytes);
         storedFile.setFilename(fileName);
         storedFile.setContentType("photo");
         storedFile.save();
         return fileName;
+    }
+
+    private BufferedImage reduceImageSize(MultipartFile multipartFile) throws IOException {
+        BufferedImage bufferedImage = ImageIO.read(multipartFile.getInputStream());
+        int w =  bufferedImage.getWidth();
+        int h = bufferedImage.getHeight();
+        BufferedImage dimg = new BufferedImage(200, 200, bufferedImage.getType());
+        Graphics2D g = dimg.createGraphics();
+        g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        g.drawImage(bufferedImage, 0, 0,200, 200, 0, 0, w, h, null);
+        g.dispose();
+        return dimg;
+
+
     }
 
     public String getPic(String petId) throws IOException {
