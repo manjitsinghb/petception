@@ -1,5 +1,6 @@
 package com.petception.app.controller;
 
+import com.petception.app.annotation.Authentication;
 import com.petception.dao.PetInfoDao;
 import com.petception.enums.ServerStatus;
 import com.petception.pet.Pet;
@@ -122,6 +123,7 @@ public class PetInfoController {
         }
     }
 
+    @Authentication
     @RequestMapping(value = "/getAllPets",produces = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.GET)
     public @ResponseBody PetInfoResponse getAllPets()
     {

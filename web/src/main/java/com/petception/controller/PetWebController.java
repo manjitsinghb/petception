@@ -1,5 +1,6 @@
 package com.petception.controller;
 
+import com.petception.annotation.Metrics;
 import com.petception.constants.WebConstants;
 import com.petception.dao.PetInfoDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ public class PetWebController {
     PetInfoDao petInfoDao;
 
     @RequestMapping(value = "/")
+    @Metrics
     public String index(Model model)
     {
         model.addAttribute("header",webConstants.getIndex_header());
@@ -27,6 +29,13 @@ public class PetWebController {
         model.addAttribute("pets",petInfoDao.getAllPetInfo());
         return "index";
     }
+
+    @RequestMapping(value = "/dashboard")
+    public String dashboard(Model model)
+    {
+        return "dashboard";
+    }
+
 
     @RequestMapping(value = "/addPet")
     public String addPet(Model model)

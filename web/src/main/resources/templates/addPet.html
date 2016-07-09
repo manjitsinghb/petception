@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+>
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -12,7 +13,9 @@
     <!-- Bootstrap theme -->
     <link href="css/bootstrap-theme.min.css" rel="stylesheet" />
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-
+    <link href="css/viewport-workaround.css" rel="stylesheet" />
+    <link href="css/navbar.css" rel="stylesheet" />
+    <link href="css/theme.css" rel="stylesheet" />
 </head>
 
 <body role="document">
@@ -36,22 +39,16 @@
                 <li><a class="active" href="/addPet">Add your pet</a></li>
             </ul>
             <form class="navbar-form navbar-right">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Email"></input>
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password"></input>
-                </div>
-                <button class="btn btn-success" type="submit">Sign in</button>
+                <ul>
+                <li><p style="color:white;" th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]!</p></li>
+                </ul>
             </form>
         </div>
     </div>
 </nav>
 
-<hr />
 <div class="container theme-showcase" role="main">
     <!-- Example row of columns -->
-    <p>
     <div class="page-header">
 
     <div role="alert" class="alert alert-danger" id="fileUploadError" style="display:none;">
@@ -125,7 +122,6 @@
             <button class="btn btn-lg btn-success" id="addPet" type="button">Add your pet</button>
         </form>
     </div>
-    </p>
 
     <hr/>
 

@@ -9,7 +9,7 @@ import org.springframework.context.annotation.PropertySource;
  * Created by manjtsingh on 6/5/2016.
  */
 @SpringBootApplication
-@ComponentScan("com.petception.*")
+@ComponentScan("com.petception")
 @PropertySource("index.properties")
 public class Application {
 

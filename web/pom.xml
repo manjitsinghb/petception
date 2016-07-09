@@ -16,9 +16,18 @@
         <artifactId>spring-boot-starter-thymeleaf</artifactId>
     </dependency>
     <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
+    <dependency>
         <groupId>petception</groupId>
         <artifactId>dao</artifactId>
         <version>${project.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.aspectj</groupId>
+        <artifactId>aspectjtools</artifactId>
+        <version>1.7.3</version>
     </dependency>
 </dependencies>
 

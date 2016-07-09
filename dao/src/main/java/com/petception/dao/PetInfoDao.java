@@ -4,7 +4,7 @@ import com.petception.mongo.PetAccessLayer;
 import com.petception.pet.Pet;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 /**
  * Created by manjtsingh on 6/5/2016.
  */
-@Controller
+@Component
 public class PetInfoDao {
 
     @Autowired
