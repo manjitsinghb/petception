@@ -30,6 +30,13 @@ public class PetWebController {
         return "index";
     }
 
+    @RequestMapping(value = "/login")
+    public String login(Model model)
+    {
+        return "login";
+    }
+
+
     @RequestMapping(value = "/dashboard")
     public String dashboard(Model model)
     {
