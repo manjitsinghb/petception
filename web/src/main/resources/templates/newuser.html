@@ -45,7 +45,7 @@
 <div class="container">
 
     <!-- Example row of columns -->
-    <form class="form-signin" action="/login" method="POST">
+    <form class="form-signin" action="/completeRegistration" method="POST">
         <div th:if="${param.error}">
             <div role="alert" class="alert alert-danger">
                 <strong>Login Failed</strong> Invalid username and password combination.
@@ -55,15 +55,8 @@
         <input type="email" autofocus="" required="" placeholder="Email address" class="form-control" name="username" id="inputEmail" />
         <label class="sr-only" for="inputPassword">Password</label>
         <input type="password" required="" placeholder="Password" class="form-control" name="password" id="inputPassword" />
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me </input>
-            </label>
-        </div>
-        <input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign in"></input>
-        <a href="/register" >New User?</a>
+        <input type="submit" class="btn btn-lg btn-primary btn-block" value="Register User"></input>
     </form>
-
     <hr />
     <footer>
         <p>&copy; 2016 Petception, Inc.</p>

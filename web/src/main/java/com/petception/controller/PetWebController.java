@@ -3,10 +3,12 @@ package com.petception.controller;
 import com.petception.annotation.Metrics;
 import com.petception.constants.WebConstants;
 import com.petception.dao.PetInfoDao;
+import com.petception.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Created by manjtsingh on 6/30/2016.
@@ -20,6 +22,9 @@ public class PetWebController {
     @Autowired
     PetInfoDao petInfoDao;
 
+    @Autowired
+    UserDao userDao;
+
     @RequestMapping(value = "/")
     @Metrics
     public String index(Model model)
@@ -29,6 +34,20 @@ public class PetWebController {
         model.addAttribute("pets",petInfoDao.getAllPetInfo());
         return "index";
     }
+
+    @RequestMapping(value = "/register")
+    public String register(Model model)
+    {
+        return "newuser";
+    }
+
+    @RequestMapping("/completeRegistration")
+    public String completeRegistration(@RequestParam String username,@RequestParam String password,Model model)
+    {
+        userDao.registerNewUser(username,password);
+        return "login";
+    }
+
 
     @RequestMapping(value = "/login")
     public String login(Model model)

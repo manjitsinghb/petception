@@ -32,4 +32,8 @@ public class UserDao {
         user.setId(document.getObjectId("_id").toString());
         return user;
     }
+
+    public void registerNewUser(String username, String password) {
+        Document user = userAccessLayer.createUser(username,password);
+    }
 }
