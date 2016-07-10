@@ -33,7 +33,7 @@ public class UserDao {
         return user;
     }
 
-    public void registerNewUser(String username, String password) {
+    public void registerNewUser(String username, String password) throws Exception {
         Document user = userAccessLayer.createUser(username,password);
     }
 }

@@ -38,10 +38,10 @@
                 <li><a href="#contact">Search for pets</a></li>
                 <li><a class="active" href="/addPet">Add your pet</a></li>
             </ul>
-            <form class="navbar-form navbar-right">
-                <ul>
-                    <li><p style="color:white;" th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]!</p></li>
-                </ul>
+            <form method="POST" action="/logout" class="navbar-form navbar-right">
+                <div class="form-group">
+                    <h5 style="color:white;" th:inline="text">[[${#httpServletRequest.remoteUser}]]!</h5>                </div>
+                <input class="btn btn-danger" type="submit" value="logout"></input>
             </form>
         </div>
     </div>
@@ -49,7 +49,9 @@
 
 <div class="container theme-showcase" role="main">
     <!-- Example row of columns -->
-
+    <div class="jumbotron">
+        This will be dashboard for the logged in user. User add my pet to add a pet
+    </div>
 
     <hr/>
 
