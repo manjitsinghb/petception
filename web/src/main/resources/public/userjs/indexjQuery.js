@@ -3,7 +3,7 @@ $('#petDetails img').each(function(){
                       var imgData='data:image/jpg+xml;base64,';
                       var idToSearch=this.id;
                       $.ajax({
-                      url: "http://localhost:8080/getPetPhoto", // Url to which the request is send
+                      url: "http://petception.ddns.net:8080/getPetPhoto", // Url to which the request is send
                       type: "POST",             // Type of request to be send, called as method
                       data: this.id, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
                       contentType: "text/plain",       // The content type used when sending data to the server.

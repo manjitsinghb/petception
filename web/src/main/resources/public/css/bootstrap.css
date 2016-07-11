@@ -1269,7 +1269,7 @@ h1,
 }
 h2,
 .h2 {
-  font-size: 30px;
+  font-size: 24px;
 }
 h3,
 .h3 {
@@ -3437,7 +3437,7 @@ fieldset[disabled] .btn-link:focus {
 .btn-lg,
 .btn-group-lg > .btn {
   padding: 10px 16px;
-  font-size: 18px;
+  font-size: 14px;
   line-height: 1.3333333;
   border-radius: 6px;
 }
@@ -4971,7 +4971,7 @@ a.badge:focus {
 }
 .jumbotron p {
   margin-bottom: 15px;
-  font-size: 21px;
+  font-size: 16px;
   font-weight: 200;
 }
 .jumbotron > hr {
@@ -4988,9 +4988,7 @@ a.badge:focus {
 }
 @media screen and (min-width: 768px) {
   .jumbotron {
-    padding-top: 48px;
-    padding-bottom: 48px;
-  }
+   }
   .container .jumbotron,
   .container-fluid .jumbotron {
     padding-right: 60px;

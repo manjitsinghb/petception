@@ -10,6 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -55,13 +56,21 @@ public class PetWebController {
     public String completeRegistration(@RequestParam String username,@RequestParam String password,Model model)
     {
         try {
-            userDao.registerNewUser(username,password);
-            model.addAttribute("successResponse","Success!. Please use the login page to login");
-            return "login";
+            if(!validate(username,password)) {
+                userDao.registerNewUser(username, password);
+                model.addAttribute("successResponse", "Success!. Please use the login page to login");
+                return "login";
+            }
+            model.addAttribute("errorResponse","Username/password cannot be blank");
+            return "newuser";
         } catch (Exception e) {
             model.addAttribute("errorResponse","Please choose another username");
         }
         return "newuser";
+    }
+
+    private boolean validate(String username, String password) {
+        return StringUtils.isEmpty(username)||StringUtils.isEmpty(password);
     }
 
 
