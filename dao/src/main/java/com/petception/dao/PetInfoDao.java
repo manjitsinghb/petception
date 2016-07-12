@@ -43,21 +43,25 @@ public class PetInfoDao {
         List<Pet> pets = new ArrayList<>();
         for(Document response : responses)
         {
-            Pet pet = new Pet();
-            pet.setAge(response.getInteger("age"));
-            pet.setBreed(response.getString("breed"));
-            pet.setColor(response.getString("color"));
-            pet.setPetId(response.getString("petId"));
-            pet.setWeight(response.getInteger("weight"));
-            pet.setName(response.getString("name"));
-            pet.setUrl(response.getString("url"));
-            pet.setVaccine(response.getString("vaccine"));
-            pet.setType(response.getString("type"));
-            pet.setComment(response.getString("comment"));
-            pet.setVideoUrl(response.getString("videoUrl"));
-            pets.add(pet);
+            mapPets(pets, response);
         }
         return pets;
+    }
+
+    private void mapPets(List<Pet> pets, Document response) {
+        Pet pet = new Pet();
+        pet.setAge(response.getInteger("age"));
+        pet.setBreed(response.getString("breed"));
+        pet.setColor(response.getString("color"));
+        pet.setPetId(response.getString("petId"));
+        pet.setWeight(response.getInteger("weight"));
+        pet.setName(response.getString("name"));
+        pet.setUrl(response.getString("url"));
+        pet.setVaccine(response.getString("vaccine"));
+        pet.setType(response.getString("type"));
+        pet.setComment(response.getString("comment"));
+        pet.setVideoUrl(response.getString("videoUrl"));
+        pets.add(pet);
     }
 
     public String addPetInfo(Pet pet) {
@@ -79,5 +83,15 @@ public class PetInfoDao {
 
     public String getVideo(String petVideoId) throws IOException {
         return petAccessLayer.getVideo(petVideoId);
+    }
+
+    public List<Pet> getAllPetInfo(String username) {
+        List<Pet> pets = new ArrayList<>();
+        List<Document> petDocs = petAccessLayer.getPetsForUser(username);
+        for(Document doc : petDocs)
+        {
+            pets.addAll(mapDocumentToPetInfo(doc));
+        }
+        return pets;
     }
 }

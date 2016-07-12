@@ -4,6 +4,7 @@ import com.petception.annotation.Metrics;
 import com.petception.constants.WebConstants;
 import com.petception.dao.PetInfoDao;
 import com.petception.dao.UserDao;
+import com.petception.pet.Pet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -13,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 /**
  * Created by manjtsingh on 6/30/2016.
@@ -36,7 +39,7 @@ public class PetWebController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!(auth instanceof AnonymousAuthenticationToken)) {
     /* The user is logged in :) */
-            return "dashboard";
+            return dashboard(model);
         }
         model.addAttribute("header",webConstants.getIndex_header());
         model.addAttribute("headerText",webConstants.getIndex_header_text());
@@ -86,6 +89,10 @@ public class PetWebController {
     @Metrics
     public String dashboard(Model model)
     {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username=(String)auth.getPrincipal();
+       List<Pet> pets = petInfoDao.getAllPetInfo(username);
+        model.addAttribute("pets",pets);
         return "dashboard";
     }
 

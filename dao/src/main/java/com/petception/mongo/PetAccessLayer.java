@@ -128,4 +128,14 @@ public class PetAccessLayer extends BaseRepository{
         storedFile.save();
         return fileName;
     }
+
+    public List<Document> getPetsForUser(String username) {
+        Document filter = new Document("_id",username);
+        List<Document> results = petInfoCollection.find(filter).into(new ArrayList<>());
+        if(results.size()==0)
+        {
+            return null;
+        }
+        return results;
+    }
 }

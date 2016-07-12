@@ -53,6 +53,53 @@
         This will be dashboard for the logged in user. User add my pet to add a pet
     </div>
 
+    </div>
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+        <div  id="petDetails" th:each="pet : ${pets}" class="col-md-4">
+            <hr />
+            <img class="img-thumbnail" src="images/missing.jpg" th:id="${pet.url}"
+                 style="float:right; width: 200px; height: 160px;" type="image/jpg+xml"
+                 data-holder-rendered="true" />
+            <h2 th:text="${pet.name}"></h2>
+            <p th:inline="text">Breed:[[${pet.breed}]]</p>
+            <p th:inline="text">Type:[[${pet.type}]]</p>
+            <p th:inline="text">Age: [[${pet.age}]]</p>
+            <button type="button" class="btn btn-default" data-toggle="modal"
+                    th:attr="data-target='#'+${pet.petId}"
+            >More Pet Details</button>
+            <div th:id="${pet.petId}" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h3 class="modal-title" th:text="${pet.name}"> </h3>
+                        </div>
+                        <div class="modal-body">
+                            <ul class="list-group">
+                                <li class="list-group-item" th:inline="text">Name: [[${pet.name}]]</li>
+                                <li class="list-group-item" th:inline="text">Age: [[${pet.age}]]</li>
+                                <li class="list-group-item" th:inline="text">Pet: [[${pet.type}]]</li>
+                                <li class="list-group-item" th:inline="text">Breed:[[${pet.breed}]] </li>
+                                <li class="list-group-item" th:inline="text">Color: [[${pet.color}]]</li>
+                                <li class="list-group-item" th:inline="text">Weight: [[${pet.weight}]] </li>
+                                <li class="list-group-item" th:inline="text">Comment: [[${pet.comment}]]</li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <hr/>
 
     <footer>
@@ -63,6 +110,5 @@
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="js/bootstrap.js"></script>
-<script src="userjs/jqueryHelper.js"></script>
-</body>
+<script src="userjs/indexjQuery.js"></script></body>
 </html>
