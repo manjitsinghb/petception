@@ -52,8 +52,6 @@ success: function(data)   // A function to be called if request succeeds
 });
 }));
 
-
-
 $("#addPet").click((function(e) {
 var petData = {};
 petData["name"]=$("#nameOfPet").val()
