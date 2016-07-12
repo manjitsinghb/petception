@@ -52,8 +52,7 @@
     <div class="jumbotron">
         This will be dashboard for the logged in user. User add my pet to add a pet
     </div>
-
-    </div>
+</div>
 <div class="container">
     <!-- Example row of columns -->
     <div class="row">
@@ -92,6 +91,8 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
+                        <video controls="controls" width="200" height="300" name="Video Name" id="playVideo" onplay="playVideo(this)" th:id="${pet.videoUrl}"></video>
+
                     </div>
                 </div>
             </div>
@@ -99,8 +100,7 @@
     </div>
 
 
-
-    <hr/>
+<hr/>
 
     <footer>
         <p>&copy; 2016 Petception, Inc.</p>
