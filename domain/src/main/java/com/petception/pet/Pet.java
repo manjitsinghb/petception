@@ -18,6 +18,17 @@ public class Pet {
     private String comment ="N/A";
     private String type;
 
+    public String getVideoUrl() {
+        return videoUrl;
+    }
+
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
+    }
+
+    private String videoUrl;
+
+
     public String getVaccine() {
         return vaccine;
     }

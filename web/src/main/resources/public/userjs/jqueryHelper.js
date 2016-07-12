@@ -64,6 +64,7 @@ petData["email"]=$("#email").val();
 petData["type"]=$("#typeOfPet").val();
 petData["vaccine"]=$("#vaccine").val();
 petData["comment"]=$("#comment").val();
+petData["videoUrl"]=$("#videourl").val();
 var pet ={};
 pet["pet"]=petData;
 $.ajax({

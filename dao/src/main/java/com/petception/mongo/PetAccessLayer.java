@@ -41,7 +41,7 @@ public class PetAccessLayer extends BaseRepository{
 
     public Document addPetInfo(Pet pet) {
         Document insertDoc = new Document("name",pet.getName()).append("age",pet.getAge()).append("breed",pet.getBreed()).append("comment",pet.getComment())
-               .append("type",pet.getType()).append("color",pet.getColor()).append("weight",pet.getWeight()).append("petId",pet.getPetId()).append("url",pet.getUrl());
+               .append("type",pet.getType()).append("videoUrl",pet.getVideoUrl()).append("color",pet.getColor()).append("weight",pet.getWeight()).append("petId",pet.getPetId()).append("url",pet.getUrl());
 
         Document findDoc = new Document("_id",pet.getEmail());
         List<Document> findResult = petInfoCollection.find(findDoc).into(new ArrayList<>());
