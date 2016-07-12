@@ -80,10 +80,10 @@ public class PetAccessLayer extends BaseRepository{
         BufferedImage bufferedImage = ImageIO.read(multipartFile.getInputStream());
         int w =  bufferedImage.getWidth();
         int h = bufferedImage.getHeight();
-        BufferedImage dimg = new BufferedImage(200, 200, bufferedImage.getType());
+        BufferedImage dimg = new BufferedImage(320, 240, bufferedImage.getType());
         Graphics2D g = dimg.createGraphics();
         g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-        g.drawImage(bufferedImage, 0, 0,200, 200, 0, 0, w, h, null);
+        g.drawImage(bufferedImage, 0, 0,320, 240, 0, 0, w, h, null);
         g.dispose();
         return dimg;
 
@@ -104,4 +104,28 @@ public class PetAccessLayer extends BaseRepository{
         }
     }
 
+    public String getVideo(String videoId) throws IOException {
+        GridFS gfsVideo = new GridFS(mongoClient.getDB("petception"), "videoStore");
+        GridFSDBFile imageForOutput = gfsVideo.findOne(videoId);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        try {
+            if(imageForOutput != null) {
+                imageForOutput.writeTo(byteArrayOutputStream);
+            }
+            return byteArrayOutputStream.toString();
+        }finally {
+            byteArrayOutputStream.close();
+        }
+    }
+
+    public String uploadVideo(MultipartFile file) throws IOException {
+        String fileName = UUID.randomUUID().toString();
+        byte[] fileBytes = Base64.encodeBase64(file.getBytes());
+        GridFS gridFS = new GridFS(mongoClient.getDB("petception"),"videoStore");
+        GridFSInputFile storedFile = gridFS.createFile(fileBytes);
+        storedFile.setFilename(fileName);
+        storedFile.setContentType("video");
+        storedFile.save();
+        return fileName;
+    }
 }

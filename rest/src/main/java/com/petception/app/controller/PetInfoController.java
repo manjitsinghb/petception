@@ -112,6 +112,31 @@ public class PetInfoController {
 
     }
 
+    @RequestMapping(value="/uploadVideo",consumes = MediaType.MULTIPART_FORM_DATA_VALUE,produces = MediaType.TEXT_PLAIN_VALUE,method = RequestMethod.POST)
+    public @ResponseBody String uploadVideo(@RequestParam("file") MultipartFile file)
+    {
+        try {
+            return petInfoDao.uploadVideo(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ServerStatus.FAILED.name();
+        }
+
+    }
+
+
+    @RequestMapping(value="/getPetVideo",produces = MediaType.TEXT_PLAIN_VALUE,method = RequestMethod.POST)
+    public @ResponseBody String getPetVideo(@RequestBody String petVideoId)
+    {
+        try {
+            return petInfoDao.getVideo(petVideoId);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ServerStatus.FAILED.name();
+        }
+    }
+
+
     @RequestMapping(value="/getPetPhoto",produces = MediaType.TEXT_PLAIN_VALUE,method = RequestMethod.POST)
     public @ResponseBody String getPetPic(@RequestBody String petId)
     {

@@ -111,6 +111,10 @@
                 </div>
             </div>
             <input type="hidden" id="url" />
+            <input type="hidden" id="videourl" />
+
+            <video controls="controls" width="800" height="600" name="Video Name" id="playVideo" src=""></video>
+
             <div class="form-group">
                 <label for="comment">Comment:</label>
                 <textarea class="form-control" rows="5" id="comment"></textarea>
@@ -119,8 +123,14 @@
                 <label for="vaccine">Upload Pic</label>
                 <input accept="image/jpeg" type="file" id="fileToUpload"   />
             </div>
+            <div class="form-group">
+                <label for="video">Upload Video</label>
+                <input type="file" accept="video/*;capture=camera" id="videoUpload"></input>
+            </div>
             <button class="btn btn-lg btn-success" id="addPet" type="button">Add your pet</button>
         </form>
+
+
     </div>
 
     <hr/>

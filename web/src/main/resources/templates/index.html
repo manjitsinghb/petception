@@ -64,7 +64,7 @@
         <div  id="petDetails" th:each="pet : ${pets}" class="col-md-4">
             <hr />
             <img class="img-thumbnail" src="images/missing.jpg" th:id="${pet.url}"
-                 style="float:right; width: 200px; height: 200px;" type="image/jpg+xml"
+                 style="float:right; width: 200px; height: 160px;" type="image/jpg+xml"
                  data-holder-rendered="true" />
             <h2 th:text="${pet.name}"></h2>
             <p th:inline="text">Breed:[[${pet.breed}]]</p>

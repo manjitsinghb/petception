@@ -70,4 +70,13 @@ public class PetInfoDao {
     public String getPic(String petId) throws IOException {
         return petAccessLayer.getPic(petId);
     }
+
+    public String uploadVideo(MultipartFile file) throws IOException {
+        return petAccessLayer.uploadVideo(file);
+
+    }
+
+    public String getVideo(String petVideoId) throws IOException {
+        return petAccessLayer.getVideo(petVideoId);
+    }
 }

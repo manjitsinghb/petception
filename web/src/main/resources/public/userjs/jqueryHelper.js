@@ -24,6 +24,36 @@ success: function(data)   // A function to be called if request succeeds
 }
 });
 }));
+
+$("#videoUpload").change((function(e) {
+$("#addPet").attr("disabled", "disabled");
+var formData = new FormData();
+formData.append('file', $('#videoUpload')[0].files[0]);
+$.ajax({
+url: "http://petception.ddns.net:8080/uploadVideo", // Url to which the request is send
+type: "POST",             // Type of request to be send, called as method
+data: formData, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+contentType: false,       // The content type used when sending data to the server.
+cache: false,             // To unable request pages to be cached
+processData:false,        // To send DOMDocument or non processed data file it is set to false
+success: function(data)   // A function to be called if request succeeds
+{
+    $("#videourl").attr('value',data);
+    $("#fileUploadSuccess").css({ 'display': "block" });
+    $("#fileUploadError").css({ 'display': "none" });;
+    $("#addPet").removeAttr("disabled");
+
+},error: function(data)
+{
+    $("#fileUploadSuccess").css({ 'display': "none" });
+    $("#fileUploadError").css({ 'display': "block" });;
+    $("#addPet").removeAttr("disabled");
+}
+});
+}));
+
+
+
 $("#addPet").click((function(e) {
 var petData = {};
 petData["name"]=$("#nameOfPet").val()
