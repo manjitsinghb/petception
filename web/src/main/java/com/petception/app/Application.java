@@ -10,7 +10,8 @@ import org.springframework.context.annotation.PropertySource;
  */
 @SpringBootApplication
 @ComponentScan("com.petception")
-@PropertySource("index.properties")
+@PropertySource(value = {"index.properties","dao.properties"})
+
 public class Application {
 
     public static void main(String args[])

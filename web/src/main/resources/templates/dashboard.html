@@ -88,11 +88,12 @@
                                 <li class="list-group-item" th:inline="text">Comment: [[${pet.comment}]]</li>
                             </ul>
                         </div>
+                        <div class="embed-responsive embed-responsive-4by3">
+                            <video controls="controls" width="600" height="320" name="Pet Video" id="playVideo" th:src="${'http://petception.ddns.net:8081/videos/'+pet.videoUrl+'.mov'}"></video>
+                        </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
-                        <video controls="controls" width="200" height="300" name="Video Name" id="playVideo" onplay="playVideo(this)" th:id="${pet.videoUrl}"></video>
-
                     </div>
                 </div>
             </div>
