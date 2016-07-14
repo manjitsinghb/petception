@@ -24,4 +24,9 @@ public class UserAccessLayer extends BaseRepository {
         return result.get(0);
     }
 
+    public Document createUser(String username, String password) throws Exception {
+        Document document = new Document("username",username).append("password",password);
+        userInfoCollection.insertOne(document);
+        return document;
+    }
 }

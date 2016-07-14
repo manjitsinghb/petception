@@ -1,5 +1,6 @@
 package com.petception.app.controller;
 
+import com.petception.app.annotation.Authentication;
 import com.petception.dao.PetInfoDao;
 import com.petception.enums.ServerStatus;
 import com.petception.pet.Pet;
@@ -13,7 +14,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -34,6 +38,7 @@ public class PetInfoController {
     @Value("${breed.dog}")
     private String dogBreed;
 
+    @Value("${breed.cat}")
     private String catBreed;
 
     @RequestMapping(value = "/getPet",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.POST)
@@ -53,17 +58,18 @@ public class PetInfoController {
     }
 
     @RequestMapping(value = "/getBreed",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.POST)
-    public @ResponseBody String getBreed(@RequestBody Map<String, String> breeds)
+    public @ResponseBody Map<String,String> getBreed(@RequestBody Map<String, String> breeds)
     {
+        Map<String,String> map = new HashMap<>();
         String breed = breeds.get("breed");
-        if("dog".equalsIgnoreCase(breed)) {
-            return dogBreed;
+        if("Dog".equalsIgnoreCase(breed)) {
+            map.put("breed",dogBreed);
         }
-        else if("cat".equalsIgnoreCase(breed))
+        else if("Cat".equalsIgnoreCase(breed))
         {
-            return catBreed;
+            map.put("breed",catBreed);
         }
-        return null;
+        return map;
     }
 
 
@@ -94,6 +100,55 @@ public class PetInfoController {
     }
 
 
+    @RequestMapping(value="/uploadPic",consumes = MediaType.MULTIPART_FORM_DATA_VALUE,produces = MediaType.TEXT_PLAIN_VALUE,method = RequestMethod.POST)
+    public @ResponseBody String uploadPic(@RequestParam("file") MultipartFile file)
+    {
+        try {
+            return petInfoDao.uploadPic(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ServerStatus.FAILED.name();
+        }
+
+    }
+
+    @RequestMapping(value="/uploadVideo",consumes = MediaType.MULTIPART_FORM_DATA_VALUE,produces = MediaType.TEXT_PLAIN_VALUE,method = RequestMethod.POST)
+    public @ResponseBody String uploadVideo(@RequestParam("file") MultipartFile file)
+    {
+        try {
+            return petInfoDao.uploadVideo(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ServerStatus.FAILED.name();
+        }
+
+    }
+
+
+    @RequestMapping(value="/getPetVideo",produces = MediaType.APPLICATION_OCTET_STREAM_VALUE,method = RequestMethod.POST)
+    public @ResponseBody String getPetVideo(@RequestBody String petVideoId)
+    {
+        try {
+            return petInfoDao.getVideo(petVideoId);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ServerStatus.FAILED.name();
+        }
+    }
+
+
+    @RequestMapping(value="/getPetPhoto",produces = MediaType.TEXT_PLAIN_VALUE,method = RequestMethod.POST)
+    public @ResponseBody String getPetPic(@RequestBody String petId)
+    {
+        try {
+            return petInfoDao.getPic(petId);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ServerStatus.FAILED.name();
+        }
+    }
+
+    @Authentication
     @RequestMapping(value = "/getAllPets",produces = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.GET)
     public @ResponseBody PetInfoResponse getAllPets()
     {

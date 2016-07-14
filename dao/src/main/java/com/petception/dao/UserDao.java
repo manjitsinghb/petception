@@ -29,7 +29,11 @@ public class UserDao {
     {
         User user = new User();
         user.setUsername(document.getString("username"));
-        user.setId(document.getString("_id"));
+        user.setId(document.getObjectId("_id").toString());
         return user;
+    }
+
+    public void registerNewUser(String username, String password) throws Exception {
+        Document user = userAccessLayer.createUser(username,password);
     }
 }

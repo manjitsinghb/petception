@@ -11,11 +11,41 @@ public class Pet {
     private String petId;
     private String name;
     private String breed;
-    private Integer weigthInLbs;
+    private Integer weight;
     private Integer age;
     private String color;
     private String url;
-    private String comment;
+    private String comment ="N/A";
+    private String type;
+
+    public String getVideoUrl() {
+        return videoUrl;
+    }
+
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
+    }
+
+    private String videoUrl;
+
+
+    public String getVaccine() {
+        return vaccine;
+    }
+
+    public void setVaccine(String vaccine) {
+        this.vaccine = vaccine;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    private String vaccine;
 
     public String getEmail() {
         return email;
@@ -77,12 +107,12 @@ public class Pet {
         this.breed = breed;
     }
 
-    public Integer getWeigthInLbs() {
-        return weigthInLbs;
+    public Integer getWeight() {
+        return weight;
     }
 
-    public void setWeigthInLbs(Integer weigthInLbs) {
-        this.weigthInLbs = weigthInLbs;
+    public void setWeight(Integer weight) {
+        this.weight = weight;
     }
 
     public Integer getAge() {

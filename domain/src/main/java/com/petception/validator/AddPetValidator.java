@@ -25,7 +25,16 @@ public class AddPetValidator {
         validateWeight(pet,error);
         validateBreed(pet,error);
         validateName(pet,error);
+        validateType(pet,error);
         return error;
+    }
+
+    private void validateType(Pet pet, List<String> error) {
+        LOGGER.info("Validating Type of pet");
+        if(StringUtils.isEmpty(pet.getType()))
+        {
+            error.add("Please select a pet type");
+        }
     }
 
     private void validateName(Pet pet, List<String> error) {
@@ -45,8 +54,8 @@ public class AddPetValidator {
     }
 
     private void validateWeight(Pet pet,List<String> error) {
-        LOGGER.info("Validating pet weight {} for user {}",pet.getWeigthInLbs(),pet.getUserId());
-        if(pet.getWeigthInLbs()==null || pet.getWeigthInLbs()<=0)
+        LOGGER.info("Validating pet weight {} for user {}",pet.getWeight(),pet.getUserId());
+        if(pet.getWeight()==null || pet.getWeight()<=0)
         {
             error.add("Please enter a valid weight");
         }

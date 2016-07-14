@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Petception</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet" />
+
+    <!-- Bootstrap theme -->
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet" />
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="css/viewport-workaround.css" rel="stylesheet" />
+    <link href="css/navbar.css" rel="stylesheet" />
+    <link href="css/theme.css" rel="stylesheet" />
+</head>
+
+<body role="document">
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">Petception</a>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar" aria-expanded="false" style="height: 0.883333px;">
+            <ul class="nav navbar-nav">
+                <li><a href="/about">About</a></li>
+                <li><a href="#contact">Search for pets</a></li>
+                <li><a class="active" href="/addPet">Add your pet</a></li>
+            </ul>
+            <form method="POST" action="/logout" class="navbar-form navbar-right">
+                <div class="form-group">
+                    <h5 style="color:white;" th:inline="text">[[${#httpServletRequest.remoteUser}]]!</h5>                </div>
+                <input class="btn btn-danger" type="submit" value="logout"></input>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="container theme-showcase" role="main">
+    <!-- Example row of columns -->
+    <div class="page-header">
+
+    <div role="alert" class="alert alert-danger" id="fileUploadError" style="display:none;">
+        <strong>Oops!</strong> Failed to upload the file.
+    </div>
+    <div role="alert" class="alert alert-success" id="fileUploadSuccess" style="display:none;">
+        <strong>Upload Complete</strong> File Upload success.
+    </div>
+    <div role="alert" class="alert alert-danger" id="error-msg" style="display:none;">
+        <strong></strong>
+    </div>
+    <div role="alert" class="alert alert-success" id="success-msg" style="display:none;">
+        <strong>Success.</strong> You have added your pet.
+    </div>
+        <form action="/addYourPet" method="POST">
+            <div class="row">
+                <div class="col-md-3" >
+        <div class="form-group">
+            <label for="petname">Pet Name</label>
+            <input type="text" class="form-control" id="nameOfPet"  />
+        </div>
+        <div class="form-group">
+            <label for="type">Type of pet:</label>
+            <select class="form-control" id="typeOfPet">
+                <option value="Dog">Dog</option>
+                <option value="Cat">Cat</option>
+            </select>
+         </div>
+          <div class="form-group">
+               <label for="breed">Breed</label>
+               <select class="form-control" id="breed">
+
+               </select>
+          </div>
+
+            <div class="form-group">
+                <label for="weight">Weight</label>
+                <input type="number" class="form-control" id="weight"  />
+            </div>
+                    </div>
+                <div class="col-md-3" >
+            <div class="form-group">
+                <label for="age">Age of your pet:</label>
+                <input type="number" class="form-control" id="ageOfPet"   />
+            </div>
+            <div class="form-group">
+                <label for="color">Color:</label>
+                <input type="text" class="form-control" id="color"   />
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="text" class="form-control" id="email"   />
+            </div>
+                    </div>
+                <div class="col-md-3" >
+            <div class="form-group">
+                <label for="vaccine">Vaccine:</label>
+                <input type="text" class="form-control" id="vaccine"   />
+            </div>
+                </div>
+            </div>
+            <input type="hidden" id="url" />
+            <input type="hidden" id="videourl" />
+
+            <div class="form-group">
+                <label for="comment">Comment:</label>
+                <textarea class="form-control" rows="5" id="comment"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="vaccine">Upload Pic</label>
+                <input accept="image/jpeg" type="file" id="fileToUpload"   />
+            </div>
+            <div class="form-group">
+                <label for="video">Upload Video</label>
+                <input type="file" accept="video/*;capture=camera" id="videoUpload"></input>
+            </div>
+            <button class="btn btn-lg btn-success" id="addPet" type="button">Add your pet</button>
+        </form>
+
+
+    </div>
+
+    <hr/>
+
+    <footer>
+        <p>&copy; 2016 Petception, Inc.</p>
+    </footer>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="userjs/jqueryHelper.js"></script>
+</body>
+</html>
