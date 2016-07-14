@@ -35,7 +35,7 @@ function playVideo(element){
                           success: function(response)   // A function to be called if request succeeds
                           {
                               var file = new Blob([response], {type: "video/quicktime"});
-                               $('#'+id).attr('src',URL.createObjectURL(file));
+                               $('#'+id).attr('src',response);
                           }
                           });
 

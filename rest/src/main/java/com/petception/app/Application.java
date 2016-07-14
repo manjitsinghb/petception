@@ -12,6 +12,7 @@ import org.springframework.context.annotation.PropertySource;
  */
 @SpringBootApplication
 @PropertySource(value = "classpath:breed.properties")
+@PropertySource(value = "dao.properties")
 @ComponentScan(basePackages = "com.petception,app.*")
 @ConfigurationProperties
 @EnableAspectJAutoProxy

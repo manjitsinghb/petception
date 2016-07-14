@@ -125,7 +125,7 @@ public class PetInfoController {
     }
 
 
-    @RequestMapping(value="/getPetVideo",produces = MediaType.TEXT_PLAIN_VALUE,method = RequestMethod.POST)
+    @RequestMapping(value="/getPetVideo",produces = MediaType.APPLICATION_OCTET_STREAM_VALUE,method = RequestMethod.POST)
     public @ResponseBody String getPetVideo(@RequestBody String petVideoId)
     {
         try {

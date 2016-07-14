@@ -1,5 +1,6 @@
 package com.petception.dao;
 
+import com.petception.filestorage.PetFileLayer;
 import com.petception.mongo.PetAccessLayer;
 import com.petception.pet.Pet;
 import org.bson.Document;
@@ -21,6 +22,9 @@ public class PetInfoDao {
 
     @Autowired
     private PetAccessLayer petAccessLayer;
+
+    @Autowired
+    private PetFileLayer petFileLayer;
 
     public List<Pet> getAllPetInfo()
     {
@@ -77,7 +81,7 @@ public class PetInfoDao {
     }
 
     public String uploadVideo(MultipartFile file) throws IOException {
-        return petAccessLayer.uploadVideo(file);
+        return petFileLayer.uploadVideo(file);
 
     }
 

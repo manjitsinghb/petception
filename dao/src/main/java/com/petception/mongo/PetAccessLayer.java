@@ -112,7 +112,7 @@ public class PetAccessLayer extends BaseRepository{
             if(imageForOutput != null) {
                 imageForOutput.writeTo(byteArrayOutputStream);
             }
-            return byteArrayOutputStream.toString();
+            return Base64.decodeBase64(byteArrayOutputStream.toByteArray()).toString();
         }finally {
             byteArrayOutputStream.close();
         }
