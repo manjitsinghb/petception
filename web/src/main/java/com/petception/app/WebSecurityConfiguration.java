@@ -1,6 +1,6 @@
 package com.petception.app;
 
-import com.petception.auth.MongoAuthenticationManager;
+import com.petception.auth.OAuthAuthenticationManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -9,6 +9,7 @@ import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
 
@@ -19,8 +20,10 @@ import java.util.Arrays;
 @Configuration
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter{
 
+    RestTemplate restTemplate = new RestTemplate();
+
     @Autowired
-    private MongoAuthenticationManager mongoAuthenticationManager;
+    private OAuthAuthenticationManager oAuthAuthenticationManager;
 
     public WebSecurityConfiguration() {
         super(false);
@@ -41,9 +44,14 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .permitAll();
     }
 
-    @Override
+    /*@Override
     protected AuthenticationManager authenticationManager() throws Exception {
         return new ProviderManager(Arrays.asList((AuthenticationProvider) mongoAuthenticationManager));
-    }
+    }*/
 
+
+    @Override
+    protected AuthenticationManager authenticationManager() throws Exception {
+        return new ProviderManager(Arrays.asList((AuthenticationProvider) oAuthAuthenticationManager));
+    }
 }

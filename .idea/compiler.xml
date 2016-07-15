@@ -25,6 +25,7 @@
         <module name="configuration" />
         <module name="dao" />
         <module name="domain" />
+        <module name="oauth" />
         <module name="rest" />
         <module name="web" />
       </profile>
@@ -33,6 +34,7 @@
       <module name="configuration" target="1.8" />
       <module name="dao" target="1.8" />
       <module name="domain" target="1.8" />
+      <module name="oauth" target="1.8" />
       <module name="petception" target="1.8" />
       <module name="rest" target="1.8" />
       <module name="web" target="1.8" />

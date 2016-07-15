@@ -9,13 +9,14 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>domain</artifactId>
+    <artifactId>oauth</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>petception</groupId>
+            <artifactId>dao</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 
-<dependencies>
-    <dependency>
-        <groupId>org.aspectj</groupId>
-        <artifactId>aspectjtools</artifactId>
-        <version>1.7.3</version>
-    </dependency>
-</dependencies>
+
 </project>

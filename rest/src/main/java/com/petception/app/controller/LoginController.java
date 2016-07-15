@@ -17,6 +17,7 @@ public class LoginController {
     @Autowired
     private UserDao userDao;
 
+
    @RequestMapping(path = "/login",consumes = MediaType.APPLICATION_JSON_VALUE,
            produces = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.POST)
    public @ResponseBody LoginResponse processRequest(@RequestBody LoginRequest request)
@@ -30,6 +31,5 @@ public class LoginController {
        loginResponse.setStatus(ServerStatus.SUCCESS.name());
        return loginResponse;
    }
-
 
 }
