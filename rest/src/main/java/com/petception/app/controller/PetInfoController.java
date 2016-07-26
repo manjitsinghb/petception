@@ -16,6 +16,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -74,7 +75,7 @@ public class PetInfoController {
 
     @Authentication
     @RequestMapping(value = "/addPet",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.POST)
-    public @ResponseBody PetAddResponse addPet(@RequestBody PetAddRequest petAddRequest)
+    public @ResponseBody PetAddResponse addPet(HttpServletRequest request, @RequestBody PetAddRequest petAddRequest)
     {
         Pet pet = petAddRequest.getPet();
         List<String> errors = addPetValidator.validate(pet);
@@ -86,6 +87,7 @@ public class PetInfoController {
             return petAddResponse;
         }
         pet.setPetId(UUID.randomUUID().toString());
+        pet.setEmail((String)request.getAttribute("username"));
         String result = petInfoDao.addPetInfo(pet);
         PetAddResponse response = createPetAddResponse();
         if(result ==null)

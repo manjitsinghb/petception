@@ -40,7 +40,7 @@
             </ul>
             <form method="POST" action="/logout" class="navbar-form navbar-right">
                 <div class="form-group">
-                    <h5 style="color:white;" th:inline="text">[[${#httpServletRequest.remoteUser}]]!</h5>                </div>
+                    <h5 style="color:white;" th:inline="text">[[${#httpServletRequest.username}]]!</h5>                </div>
                 <input class="btn btn-danger" type="submit" value="logout"></input>
             </form>
         </div>
