@@ -1,4 +1,4 @@
-FROM thakurratanmj/ubuntu_java:latest
+FROM thakurratanmj/ubuntu_java8:latest
 RUN mkdir /home/app
 RUN cd /home/app
 COPY /web/target/web-*.tar.gz /home/app
