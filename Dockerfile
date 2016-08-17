@@ -10,4 +10,4 @@ COPY startup.sh /home/app
 EXPOSE 80
 EXPOSE 8080
 EXPOSE 8082
-CMD ["sh", "/home/app/startup.sh","&"]
+CMD ["sh", "/home/app/startup.sh"]
