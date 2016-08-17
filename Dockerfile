@@ -4,7 +4,7 @@ RUN cd /home/app
 COPY /web/target/web-*.tar.gz /home/app
 COPY /rest/target/*.jar /home/app
 COPY /oauth/target/*.jar /home/app
-RUN tar xvf /root/web-*tar.gz -C /home/app
+RUN tar xvf /home/app/web-*tar.gz -C /home/app
 COPY startup.sh /home/app
 EXPOSE 80
 EXPOSE 8080
