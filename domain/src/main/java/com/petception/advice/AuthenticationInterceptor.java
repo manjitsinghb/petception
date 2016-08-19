@@ -53,11 +53,11 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             }
             UserResponse response =null;
             if(username!=null && password!=null) {
-                response = restTemplate.postForObject("http://localhost:8082/authenticate", request, UserResponse.class);
+                response = restTemplate.postForObject("http://poauth:8082/authenticate", request, UserResponse.class);
             }
             else if(token!=null)
             {
-                response = restTemplate.postForObject("http://localhost:8082/isValidToken", token, UserResponse.class);
+                response = restTemplate.postForObject("http://poauth:8082/isValidToken", token, UserResponse.class);
             }
             else{
                 return false;
