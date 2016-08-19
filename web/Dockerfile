@@ -7,7 +7,7 @@ RUN mv /home/app/web-1.0-SNAPSHOT /home/app/application
 #COPY /rest/target/*.jar /home/app/application
 #COPY /oauth/target/*.jar /home/app/application
 COPY /web/startup.sh /home/app
-COPY petceptioncert.keystore /home/app/application/lib
+COPY petceptioncert.keystore /
 EXPOSE 80
 #EXPOSE 8080
 #EXPOSE 8082
