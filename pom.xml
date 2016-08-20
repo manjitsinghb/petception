@@ -15,6 +15,7 @@
         <module>dao</module>
         <module>web</module>
         <module>oauth</module>
+        <module>nginx</module>
     </modules>
 
     <parent>
