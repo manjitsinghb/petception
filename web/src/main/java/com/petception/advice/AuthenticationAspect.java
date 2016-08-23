@@ -38,6 +38,7 @@ public class AuthenticationAspect {
             user.setUsername(request.getParameter("username"));
             user.setPassword(request.getParameter("password"));
             String token = restTemplate.postForObject("http://poauth:8082/authenticate",user,String.class);
+            user.setPassword(null);
             if(token == null)
             {
                 LOGGER.info("Failed authentication using username/password");
@@ -47,6 +48,7 @@ public class AuthenticationAspect {
                 try {
                     Cookie cookie = new Cookie("token", URLEncoder.encode(token, "UTF-8"));
                     response.addCookie(cookie);
+                    request.setAttribute("username",user.getUsername());
                     return joinPoint.proceed();
                 } catch (Throwable throwable) {
                     throwable.printStackTrace();
@@ -73,6 +75,7 @@ public class AuthenticationAspect {
                 //use template to validate
                 if(user!=null)
                 {
+                    request.setAttribute("username",user.getUsername());
                     try {
                         return joinPoint.proceed();
                     } catch (Throwable throwable) {

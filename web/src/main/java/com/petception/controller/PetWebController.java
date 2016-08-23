@@ -13,6 +13,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -102,5 +103,22 @@ public class PetWebController {
     public String about(Model model)
     {
         return "about";
+    }
+
+    @Authentication
+    @RequestMapping(value = "/logout")
+    @Metrics
+    public String logout(HttpServletRequest request,HttpServletResponse response, Model model)
+    {
+        for(Cookie cookie: request.getCookies())
+        {
+            if("token".equals(cookie.getName()))
+            {
+                cookie.setValue(null);
+                response.addCookie(cookie);
+                break;
+            }
+        }
+        return index(model);
     }
 }
