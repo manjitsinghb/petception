@@ -2,9 +2,9 @@ package com.petception.controller;
 
 import com.petception.dao.UserDao;
 import com.petception.user.User;
-import com.sun.org.apache.xml.internal.security.utils.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.util.Base64Utils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -24,7 +24,7 @@ public class AuthenticationController {
         User userFromDB = userDao.isUserRegistered(user.getUsername(),user.getPassword());
         if(userFromDB!=null)
         {
-            String token = Base64.encode((user.getUsername()+ UUID.randomUUID().toString()).getBytes());
+            String token = new String(Base64Utils.encode((user.getUsername()+ UUID.randomUUID().toString()).getBytes()));
             userDao.updateTokenForUser(user.getUsername(),token);
             return token;
         }
