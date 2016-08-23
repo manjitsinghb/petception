@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -73,15 +74,15 @@ public class PetWebController {
     @Authentication
     @RequestMapping(value = "/login")
     @Metrics
-    public String login(HttpServletRequest request, Model model)
+    public String login(HttpServletRequest request, HttpServletResponse response, Model model)
     {
-        return dashboard((String)request.getAttribute("username"),model);
+        return dashboard(request,response,(String)request.getAttribute("username"),model);
     }
 
     @Authentication
     @RequestMapping(value = "/dashboard")
     @Metrics
-    public String dashboard(String username,Model model)
+    public String dashboard(HttpServletRequest request,HttpServletResponse response,String username,Model model)
     {
         List<Pet> pets = petInfoDao.getAllPetInfo(username);
         model.addAttribute("pets",pets);
@@ -91,7 +92,7 @@ public class PetWebController {
     @Authentication
     @RequestMapping(value = "/addPet")
     @Metrics
-    public String addPet(Model model)
+    public String addPet(HttpServletRequest request,HttpServletResponse response, Model model)
     {
         return "addPet";
     }
