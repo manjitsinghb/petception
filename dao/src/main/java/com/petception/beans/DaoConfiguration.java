@@ -38,7 +38,7 @@ public class DaoConfiguration {
     @Bean
     public MongoClient getMongoClient()
     {
-        return new MongoClient("localhost",27017);
+        return new MongoClient("mongo",27017);
     }
 
     @Bean
