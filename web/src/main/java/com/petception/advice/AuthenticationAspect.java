@@ -32,6 +32,31 @@ public class AuthenticationAspect {
         LOGGER.info("Starting authentication call {}",joinPoint);
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
+        if(request.getParameter("username")!=null && request.getParameter("password")!=null)
+        {
+            User user = new User();
+            user.setUsername(request.getParameter("username"));
+            user.setPassword(request.getParameter("password"));
+            String token = restTemplate.postForObject("http://poauth:8082/authenticate",user,String.class);
+            if(token == null)
+            {
+                LOGGER.info("Failed authentication using username/password");
+                return "login";
+            }
+            else {
+                try {
+                    Cookie cookie = new Cookie("token", URLEncoder.encode(token, "UTF-8"));
+                    response.addCookie(cookie);
+                    return joinPoint.proceed();
+                } catch (Throwable throwable) {
+                    throwable.printStackTrace();
+                }finally {
+                    stopWatch.stop();
+                    LOGGER.info("Ending authentication call {} - {}ms",joinPoint,stopWatch.getTotalTimeMillis());
+                }
+            }
+        }
+        LOGGER.info("Auth Failed using Username / password, trying token");
         Cookie[] cookies = request.getCookies();
         for(Cookie cookie : cookies)
         {
@@ -58,31 +83,6 @@ public class AuthenticationAspect {
                     }
                 }
                 return "login";
-            }
-        }
-        LOGGER.info("No token found");
-        if(request.getParameter("username")!=null && request.getParameter("password")!=null)
-        {
-            User user = new User();
-            user.setUsername(request.getParameter("username"));
-            user.setPassword(request.getParameter("password"));
-           String token = restTemplate.postForObject("http://poauth:8082/authenticate",user,String.class);
-            if(token == null)
-            {
-                LOGGER.info("Failed authentication using username/password");
-                return "login";
-            }
-            else {
-                try {
-                Cookie cookie = new Cookie("token", URLEncoder.encode(token, "UTF-8"));
-                response.addCookie(cookie);
-                    return joinPoint.proceed();
-                } catch (Throwable throwable) {
-                    throwable.printStackTrace();
-                }finally {
-                    stopWatch.stop();
-                    LOGGER.info("Ending authentication call {} - {}ms",joinPoint,stopWatch.getTotalTimeMillis());
-                }
             }
         }
             stopWatch.stop();
