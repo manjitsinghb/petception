@@ -44,8 +44,10 @@ public class UserDao {
 
     public User isUserValid(String token) {
         Document document = userAccessLayer.isValidUser(token);
-        User user = new User();
-        user.setUsername(document.getString("username"));
-        return user;
+        if(document != null) {
+            User user = new User();
+            user.setUsername(document.getString("username"));
+            return user;
+        } return null;
     }
 }
