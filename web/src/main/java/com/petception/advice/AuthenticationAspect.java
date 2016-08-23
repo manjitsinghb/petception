@@ -41,7 +41,7 @@ public class AuthenticationAspect {
                 User user=null;
                 try {
                     token = URLDecoder.decode(cookie.getValue(),"UTF-8");
-                    user = restTemplate.postForObject("http://localhost:8082/isValidUser",token,User.class);
+                    user = restTemplate.postForObject("http://poauth:8082/isValidUser",token,User.class);
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
@@ -66,7 +66,7 @@ public class AuthenticationAspect {
             User user = new User();
             user.setUsername(request.getParameter("username"));
             user.setPassword(request.getParameter("password"));
-           String token = restTemplate.postForObject("http://localhost:8082/authenticate",user,String.class);
+           String token = restTemplate.postForObject("http://poauth:8082/authenticate",user,String.class);
             if(token == null)
             {
                 LOGGER.info("Failed authentication using username/password");
