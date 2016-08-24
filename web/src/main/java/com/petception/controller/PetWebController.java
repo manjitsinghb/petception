@@ -114,6 +114,8 @@ public class PetWebController {
         {
             if("token".equals(cookie.getName()))
             {
+                cookie.setMaxAge(0);
+                cookie.setPath("/");
                 cookie.setValue(null);
                 response.addCookie(cookie);
                 break;
