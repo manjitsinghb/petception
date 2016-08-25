@@ -49,6 +49,7 @@ public class AuthenticationAspect {
                     Cookie cookie = new Cookie("token", URLEncoder.encode(token, "UTF-8"));
                     response.addCookie(cookie);
                     model.addAttribute("username",user.getUsername());
+                    request.setAttribute("username",user.getUsername());
                     return joinPoint.proceed();
                 } catch (Throwable throwable) {
                     throwable.printStackTrace();
@@ -75,6 +76,7 @@ public class AuthenticationAspect {
                 //use template to validate
                 if(user!=null)
                 {
+                    model.addAttribute("username",user.getUsername());
                     request.setAttribute("username",user.getUsername());
                     try {
                         return joinPoint.proceed();
