@@ -48,7 +48,7 @@ public class AuthenticationAspect {
                 try {
                     Cookie cookie = new Cookie("token", URLEncoder.encode(token, "UTF-8"));
                     response.addCookie(cookie);
-                    request.setAttribute("username",user.getUsername());
+                    model.addAttribute("username",user.getUsername());
                     return joinPoint.proceed();
                 } catch (Throwable throwable) {
                     throwable.printStackTrace();
