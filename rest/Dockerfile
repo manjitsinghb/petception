@@ -6,8 +6,8 @@ COPY /rest/target/rest*.tar.gz /home/app
 RUN tar xvf /home/app/rest-*tar.gz -C /home/app
 RUN mv /home/app/rest-1.0-SNAPSHOT /home/app/application
 #COPY /oauth/target/*.jar /home/app/application
-COPY /rest/startup.sh /home/app
 COPY petceptioncert.keystore /
+COPY /rest/startup.sh /home/app
 #EXPOSE 80
 EXPOSE 8080
 #EXPOSE 8082
