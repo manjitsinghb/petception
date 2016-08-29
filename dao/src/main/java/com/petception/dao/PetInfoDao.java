@@ -92,6 +92,10 @@ public class PetInfoDao {
     public List<Pet> getAllPetInfo(String username) {
         List<Pet> pets = new ArrayList<>();
         List<Document> petDocs = petAccessLayer.getPetsForUser(username);
+        if(petDocs==null)
+        {
+            return pets;
+        }
         for(Document doc : petDocs)
         {
             pets.addAll(mapDocumentToPetInfo(doc));

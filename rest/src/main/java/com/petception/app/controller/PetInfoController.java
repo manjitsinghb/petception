@@ -1,6 +1,6 @@
 package com.petception.app.controller;
 
-import com.petception.app.annotation.Authentication;
+import com.petception.annotation.Authentication;
 import com.petception.dao.PetInfoDao;
 import com.petception.enums.ServerStatus;
 import com.petception.pet.Pet;
@@ -16,6 +16,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -72,9 +73,9 @@ public class PetInfoController {
         return map;
     }
 
-
+    @Authentication
     @RequestMapping(value = "/addPet",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.POST)
-    public @ResponseBody PetAddResponse addPet(@RequestBody PetAddRequest petAddRequest)
+    public @ResponseBody PetAddResponse addPet(HttpServletRequest request, @RequestBody PetAddRequest petAddRequest)
     {
         Pet pet = petAddRequest.getPet();
         List<String> errors = addPetValidator.validate(pet);
@@ -86,6 +87,7 @@ public class PetInfoController {
             return petAddResponse;
         }
         pet.setPetId(UUID.randomUUID().toString());
+        pet.setEmail((String)request.getAttribute("username"));
         String result = petInfoDao.addPetInfo(pet);
         PetAddResponse response = createPetAddResponse();
         if(result ==null)
@@ -99,7 +101,7 @@ public class PetInfoController {
         return response;
     }
 
-
+    @Authentication
     @RequestMapping(value="/uploadPic",consumes = MediaType.MULTIPART_FORM_DATA_VALUE,produces = MediaType.TEXT_PLAIN_VALUE,method = RequestMethod.POST)
     public @ResponseBody String uploadPic(@RequestParam("file") MultipartFile file)
     {
@@ -112,6 +114,7 @@ public class PetInfoController {
 
     }
 
+    @Authentication
     @RequestMapping(value="/uploadVideo",consumes = MediaType.MULTIPART_FORM_DATA_VALUE,produces = MediaType.TEXT_PLAIN_VALUE,method = RequestMethod.POST)
     public @ResponseBody String uploadVideo(@RequestParam("file") MultipartFile file)
     {
@@ -124,7 +127,7 @@ public class PetInfoController {
 
     }
 
-
+    @Authentication
     @RequestMapping(value="/getPetVideo",produces = MediaType.APPLICATION_OCTET_STREAM_VALUE,method = RequestMethod.POST)
     public @ResponseBody String getPetVideo(@RequestBody String petVideoId)
     {
@@ -148,7 +151,6 @@ public class PetInfoController {
         }
     }
 
-    @Authentication
     @RequestMapping(value = "/getAllPets",produces = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.GET)
     public @ResponseBody PetInfoResponse getAllPets()
     {

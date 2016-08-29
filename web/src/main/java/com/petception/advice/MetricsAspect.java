@@ -17,7 +17,7 @@ public class MetricsAspect {
 private static Logger LOGGER = LoggerFactory.getLogger(MetricsAspect.class);
 
     @Around("@annotation(com.petception.annotation.Metrics)")
-    public Object authenticateUser(ProceedingJoinPoint joinPoint) {
+    public Object applyMetrics(ProceedingJoinPoint joinPoint) {
         LOGGER.info("Starting method call {}",joinPoint);
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();

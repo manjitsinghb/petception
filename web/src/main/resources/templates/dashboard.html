@@ -40,7 +40,7 @@
             </ul>
             <form method="POST" action="/logout" class="navbar-form navbar-right">
                 <div class="form-group">
-                    <h5 style="color:white;" th:inline="text">[[${#httpServletRequest.remoteUser}]]!</h5>                </div>
+                    <h5 style="color:white;" th:inline="text">Welcome [[${username}]]</h5>                </div>
                 <input class="btn btn-danger" type="submit" value="logout"></input>
             </form>
         </div>
@@ -88,11 +88,12 @@
                                 <li class="list-group-item" th:inline="text">Comment: [[${pet.comment}]]</li>
                             </ul>
                         </div>
+                        <div class="embed-responsive embed-responsive-4by3">
+                            <video controls="controls" name="Pet Video" th:id="${pet.videoUrl}" th:src="${'http://petception.ddns.net:8081/videos/'+pet.videoUrl+'.mov'}"></video>
+                        </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
-                        <video controls="controls" width="200" height="300" name="Video Name" id="playVideo" onplay="playVideo(this)" th:id="${pet.videoUrl}"></video>
-
                     </div>
                 </div>
             </div>

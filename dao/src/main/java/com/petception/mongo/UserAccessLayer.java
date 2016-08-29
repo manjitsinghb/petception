@@ -29,4 +29,20 @@ public class UserAccessLayer extends BaseRepository {
         userInfoCollection.insertOne(document);
         return document;
     }
+
+    public boolean updateToken(String username, String token) {
+        Document document = new Document("username",username);
+        userInfoCollection.findOneAndUpdate(document,new Document("$set",new Document("token",token)));
+        return true;
+    }
+
+    public Document isValidUser(String token) {
+        Document document = new Document("token",token);
+        List<Document> userList = userInfoCollection.find(document).into(new ArrayList<>());
+        if(!org.springframework.util.CollectionUtils.isEmpty(userList))
+        {
+            return userList.get(0);
+        }
+        return null;
+    }
 }

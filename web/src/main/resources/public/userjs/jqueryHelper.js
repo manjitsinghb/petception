@@ -4,7 +4,7 @@ $("#addPet").attr("disabled", "disabled");
 var formData = new FormData();
 formData.append('file', $('input[type=file]')[0].files[0]);
 $.ajax({
-url: "http://petception.ddns.net:8080/uploadPic", // Url to which the request is send
+url: "https://petception.ddns.net:8080/uploadPic", // Url to which the request is send
 type: "POST",             // Type of request to be send, called as method
 data: formData, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
 contentType: false,       // The content type used when sending data to the server.
@@ -30,7 +30,7 @@ $("#addPet").attr("disabled", "disabled");
 var formData = new FormData();
 formData.append('file', $('#videoUpload')[0].files[0]);
 $.ajax({
-url: "http://petception.ddns.net:8080/uploadVideo", // Url to which the request is send
+url: "https://petception.ddns.net:8080/uploadVideo", // Url to which the request is send
 type: "POST",             // Type of request to be send, called as method
 data: formData, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
 contentType: false,       // The content type used when sending data to the server.
@@ -60,7 +60,6 @@ petData["weight"]=$("#weight").val()
 petData["age"]=$("#ageOfPet").val()
 petData["color"]=$("#color").val()
 petData["url"]=$("#url").val()
-petData["email"]=$("#email").val();
 petData["type"]=$("#typeOfPet").val();
 petData["vaccine"]=$("#vaccine").val();
 petData["comment"]=$("#comment").val();
@@ -68,7 +67,7 @@ petData["videoUrl"]=$("#videourl").val();
 var pet ={};
 pet["pet"]=petData;
 $.ajax({
-url: "http://petception.ddns.net:8080/addPet", // Url to which the request is send
+url: "https://petception.ddns.net:8080/addPet", // Url to which the request is send
 type: "POST",             // Type of request to be send, called as method
 data: JSON.stringify(pet), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
 contentType: "application/json",       // The content type used when sending data to the server.
@@ -97,7 +96,7 @@ selectBreed=function(breed)
 var breedData = {};
 breedData["breed"]=breed;
 $.ajax({
-url: "http://petception.ddns.net:8080/getBreed", // Url to which the request is send
+url: "https://petception.ddns.net:8080/getBreed", // Url to which the request is send
 type: "POST",             // Type of request to be send, called as method
 data: JSON.stringify(breedData), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
 contentType: "application/json",       // The content type used when sending data to the server.

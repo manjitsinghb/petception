@@ -5,6 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/database/configuration.iml" filepath="$PROJECT_DIR$/database/configuration.iml" />
       <module fileurl="file://$PROJECT_DIR$/dao/dao.iml" filepath="$PROJECT_DIR$/dao/dao.iml" />
       <module fileurl="file://$PROJECT_DIR$/domain/domain.iml" filepath="$PROJECT_DIR$/domain/domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nginx/nginx.iml" filepath="$PROJECT_DIR$/nginx/nginx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/oauth/oauth.iml" filepath="$PROJECT_DIR$/oauth/oauth.iml" />
       <module fileurl="file://$PROJECT_DIR$/petception.iml" filepath="$PROJECT_DIR$/petception.iml" />
       <module fileurl="file://$PROJECT_DIR$/rest/rest.iml" filepath="$PROJECT_DIR$/rest/rest.iml" />
       <module fileurl="file://$PROJECT_DIR$/web/web.iml" filepath="$PROJECT_DIR$/web/web.iml" />

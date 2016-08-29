@@ -25,6 +25,11 @@ public class UserDao {
         return mapDocumentToUser(user);
     }
 
+    public boolean updateTokenForUser(String username,String token)
+    {
+       return userAccessLayer.updateToken(username,token);
+    }
+
     private User mapDocumentToUser(Document document)
     {
         User user = new User();
@@ -35,5 +40,14 @@ public class UserDao {
 
     public void registerNewUser(String username, String password) throws Exception {
         Document user = userAccessLayer.createUser(username,password);
+    }
+
+    public User isUserValid(String token) {
+        Document document = userAccessLayer.isValidUser(token);
+        if(document != null) {
+            User user = new User();
+            user.setUsername(document.getString("username"));
+            return user;
+        } return null;
     }
 }
